@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SIDF RM Credit | Onboarding Portal</title>
 <link rel="stylesheet" href="styles.css" />
 </head>
@@ -11,7 +11,7 @@
 <main class="shell">
 <header class="topbar">
 <div class="brand">
-<div class="logo-mark" aria-hidden="true"></div>
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
 <div class="brand-text">
 <div class="brand-title">SIDF</div>
 <div class="brand-sub">Relationship Management · Credit</div>
@@ -23,26 +23,24 @@
 <div class="hero-left">
 <h1>Welcome 👋</h1>
 <p class="muted">
-         This portal helps Co-op students and new RM (Credit) team members
-         get started quickly — people, process, tools, and expectations.
+         Welcome to the Saudi Industrial Development Fund. This portal helps Co-op students and new RM (Credit) team members to get started.
 </p>
 <div class="callout">
 <div class="callout-title">What you’ll find here</div>
 <ul>
-<li>Department overview & where RM Credit fits</li>
-<li>Onboarding checklist & first-week plan</li>
-<li>Key templates (PER, spreading, memo structure)</li>
-<li>Systems overview & working style</li>
+<li>Overview of SIDF</li>
+<li>SIDF structure</li>
+<li>Role of Credit Relationship Management</li>
+<li>SIDF project lifecycle</li>
+<li>Types of SIDF financing</li>
+<li>Final Tips</li>
 </ul>
 </div>
 <div class="actions">
-<a class="btn primary" href="intro.html">Enter Portal</a>
-<button class="btn ghost" id="welcomeBtn" type="button">
-           Quick Welcome Message
-</button>
+<a class="btn primary" href="overview.html">Enter Portal</a>
 </div>
 <p class="tiny muted">
-         Tip: You can replace the text with the exact wording from your SIDF presentation later.
+         Tip: You can revisit this portal anytime during your training.
 </p>
 </div>
 <div class="hero-right">
@@ -67,42 +65,20 @@
 </div>
 </div>
 <div class="divider"></div>
-<div class="mini-steps">
-<div class="step active">
-<span class="dot"></span>
-<div>
-<div class="step-title">Step 1</div>
-<div class="step-text">Welcome</div>
-</div>
-</div>
-<div class="step">
-<span class="dot"></span>
-<div>
-<div class="step-title">Step 2</div>
-<div class="step-text">Department intro</div>
-</div>
-</div>
-<div class="step">
-<span class="dot"></span>
-<div>
-<div class="step-title">Step 3</div>
-<div class="step-text">Onboarding plan</div>
-</div>
-</div>
+<div class="kv">
+<p><b>Start here:</b> SIDF overview → structure → RM role → lifecycle → financing.</p>
+<p class="muted tiny">You can expand this portal later with videos, templates, and quizzes.</p>
 </div>
 </div>
 </div>
 </section>
 <footer class="footer">
-<span class="muted">© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
-<span class="muted">Built for: RM Department · Credit</span>
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
 </footer>
 </main>
 <script>
    document.getElementById("y").textContent = new Date().getFullYear();
-   document.getElementById("welcomeBtn").addEventListener("click", () => {
-     alert("Welcome to RM Credit 👋\n\nStart with the department introduction, then continue step-by-step. You’ve got this.");
-   });
 </script>
 </body>
 </html>
