@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF RM Credit | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+   /* ========= Login UI (matches your screenshot style) ========= */
+   .login-strip{
+     margin-top: 14px;
+     padding: 12px 14px;
+     border-radius: 16px;
+     border: 1px solid rgba(0,0,0,.10);
+     background: rgba(255,255,255,.75);
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap:12px;
+     flex-wrap:wrap;
+   }
+   .login-strip .muted{ font-weight: 800; }
+   .login-pill{
+     display:none;
+     align-items:center;
+     gap:8px;
+     padding: 6px 10px;
+     border-radius: 999px;
+     border: 1px solid rgba(11,107,79,.18);
+     background: rgba(230,244,239,.7);
+     color:#0b3e30;
+     font-weight: 950;
+     font-size: 12px;
+   }
+   .login-dot{
+     width:10px; height:10px; border-radius:999px;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+   }
+   /* ========= Modal ========= */
+   .modal-backdrop{
+     position: fixed;
+     inset: 0;
+     background: rgba(0,0,0,.45);
+     display:none;
+     align-items:center;
+     justify-content:center;
+     padding: 18px;
+     z-index: 999;
+   }
+   .modal{
+     width: 100%;
+     max-width: 860px;
+     border-radius: 22px;
+     border: 1px solid rgba(0,0,0,.12);
+     background:#fff;
+     overflow:hidden;
+     box-shadow: 0 20px 45px rgba(0,0,0,.28);
+   }
+   .modal-head{
+     padding: 16px 18px;
+     background: rgba(230,244,239,.55);
+     border-bottom: 1px solid rgba(0,0,0,.08);
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap: 10px;
+   }
+   .modal-head b{ color:#0b3e30; font-size: 18px; }
+   .close-btn{
+     border: 1px solid rgba(0,0,0,.10);
+     background: rgba(255,255,255,.8);
+     padding: 10px 14px;
+     border-radius: 14px;
+     cursor:pointer;
+     font-weight: 900;
+   }
+   .modal-body{
+     padding: 18px;
+   }
+   .tabs{
+     display:flex;
+     gap: 10px;
+     margin-bottom: 14px;
+   }
+   .tab{
+     border: 1px solid rgba(0,0,0,.10);
+     background:#fff;
+     padding: 10px 14px;
+     border-radius: 14px;
+     font-weight: 950;
+     color:#1c2430;
+     cursor:pointer;
+     user-select:none;
+   }
+   .tab.active{
+     border-color: rgba(11,107,79,.25);
+     background: rgba(230,244,239,.75);
+     color:#0b3e30;
+   }
+   .form{
+     display:grid;
+     gap: 12px;
+   }
+   .field label{
+     display:block;
+     font-size: 13px;
+     font-weight: 950;
+     color:#0b3e30;
+     margin-bottom: 6px;
+   }
+   .field input{
+     width:100%;
+     padding: 12px 14px;
+     border-radius: 14px;
+     border: 1px solid rgba(0,0,0,.14);
+     outline:none;
+     font-size: 14px;
+   }
+   .field input:focus{
+     border-color: rgba(11,107,79,.35);
+     box-shadow: 0 0 0 2px rgba(11,107,79,.08);
+   }
+   .error{
+     display:none;
+     margin-top: 6px;
+     padding: 10px 12px;
+     border-radius: 14px;
+     border: 1px solid rgba(220,38,38,.20);
+     background: rgba(220,38,38,.06);
+     color:#7f1d1d;
+     font-weight: 850;
+     font-size: 12px;
+   }
+   .modal-actions{
+     margin-top: 14px;
+     display:flex;
+     justify-content:flex-end;
+     gap: 10px;
+     flex-wrap:wrap;
+   }
+   .btn2{
+     border: 1px solid rgba(0,0,0,.10);
+     padding: 12px 16px;
+     border-radius: 16px;
+     cursor:pointer;
+     font-weight: 950;
+   }
+   .btn2.ghost{ background:#fff; }
+   .btn2.primary{
+     border: none;
+     color:#fff;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+     box-shadow: 0 10px 25px rgba(11,107,79,.22);
+   }
+   .note{
+     margin-top: 10px;
+     font-size: 12px;
+     color: rgba(0,0,0,.55);
+     font-weight: 700;
+   }
+   /* make video container look clean */
+   .video-box{
+     max-width: 820px;
+     margin: 0 auto;
+     border-radius: 16px;
+     overflow:hidden;
+     border: 1px solid var(--border);
+     background:#000;
+   }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Onboarding Portal</div>
+</header>
+<section class="card hero">
+<div class="hero-left">
+<h1>Welcome 👋</h1>
+<p class="muted">
+       Welcome to the Saudi Industrial Development Fund. This portal helps Co-op students and new RM (Credit) team members to get started.
+</p>
+<!-- LOGIN STRIP -->
+<div class="login-strip">
+<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+<div id="userPill" class="login-pill">
+<span class="login-dot"></span>
+<span id="userLabel">Logged in</span>
+</div>
+<span id="loginStatus" class="muted">Please log in to save your progress.</span>
+</div>
+<div style="display:flex; gap:10px; align-items:center;">
+<a id="openLogin" class="btn primary" href="#">Log in / Create account</a>
+<a id="logoutBtn" class="btn ghost" href="#" style="display:none;">Log out</a>
+</div>
+</div>
+<!-- VIDEO -->
+<div class="video-box" style="margin-top:14px;">
+<video id="welcomeVideo" width="100%" controls
+         controlsList="nodownload noplaybackrate"
+         disablePictureInPicture
+         playsinline
+         preload="metadata"
+         style="background:#000;"
+         oncontextmenu="return false;"
+>
+<source src="welcome-video.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+</video>
+</div>
+<!-- PROGRESS -->
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:800;">Completion</div>
+<div id="progressText" class="muted" style="font-weight:900;">0%</div>
+</div>
+<div style="margin-top:8px; height:10px; border-radius:999px; overflow:hidden; background:rgba(0,0,0,.08); border:1px solid var(--border);">
+<div id="progressBar" style="height:100%; width:0%; background:linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));"></div>
+</div>
+<p id="watchNote" class="muted" style="margin-top:8px;">
+         Please watch the full introduction video to proceed. Skipping ahead is disabled.
+</p>
+</div>
+<div class="callout">
+<div class="callout-title">What you’ll find here</div>
+<ul>
+<li>Overview of SIDF</li>
+<li>SIDF structure</li>
+<li>Role of Credit Relationship Management</li>
+<li>SIDF project lifecycle</li>
+<li>Types of SIDF financing</li>
+<li>Financial Modeling</li>
+<li>Final Tips</li>
+</ul>
+</div>
+<div class="actions">
+<!-- locked until login + full video -->
+<a id="enterPortalBtn" class="btn primary" href="#" style="pointer-events:none; opacity:0.5;">
+         Enter Portal
+</a>
+</div>
+<p class="tiny muted">Tip: You can revisit this portal anytime during your training.</p>
+</div>
+<div class="hero-right">
+<div class="panel">
+<div class="panel-title">RM Credit — Starter View</div>
+<div class="statgrid">
+<div class="stat">
+<div class="stat-label">Audience</div>
+<div class="stat-value">Co-op / New Joiners</div>
+</div>
+<div class="stat">
+<div class="stat-label">Goal</div>
+<div class="stat-value">Fast onboarding</div>
+</div>
+<div class="stat">
+<div class="stat-label">Track</div>
+<div class="stat-value">Credit</div>
+</div>
+<div class="stat">
+<div class="stat-label">Format</div>
+<div class="stat-value">Step-by-step</div>
+</div>
+</div>
+<div class="divider"></div>
+<div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#fff;">
+<img src="welcome-photo.png" alt="SIDF onboarding" style="width:100%; display:block;">
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<!-- ===== LOGIN MODAL ===== -->
+<div id="modalBackdrop" class="modal-backdrop">
+<div class="modal">
+<div class="modal-head">
+<b>Portal Access</b>
+<button id="closeModal" class="close-btn" type="button">Close</button>
+</div>
+<div class="modal-body">
+<div class="tabs">
+<div id="tabLogin" class="tab active">Log in</div>
+<div id="tabCreate" class="tab">Create account</div>
+</div>
+<div class="form">
+<div class="field">
+<label for="userId">User ID (Email or Employee ID)</label>
+<input id="userId" type="text" placeholder="example@sidf.gov.sa or 12345">
+</div>
+<div class="field">
+<label for="pin">PIN (4–8 digits)</label>
+<input id="pin" type="password" inputmode="numeric" placeholder="••••">
+</div>
+<div id="err" class="error"></div>
+<div class="modal-actions">
+<button id="cancelModal" class="btn2 ghost" type="button">Cancel</button>
+<button id="submitBtn" class="btn2 primary" type="button">Log in</button>
+</div>
+<div class="note">
+         Note: This demo stores your login locally in your browser (GitHub Pages has no backend).
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ /* =========================
+    LOGIN SYSTEM (FIXED)
+    - Create account WORKS
+    - Login WORKS
+    - Stored in localStorage
+ ========================== */
+ const USERS_KEY = "sidf_users_v2";      // { userId: pin }
+ const CURRENT_KEY = "sidf_user_current";
+ const openLogin = document.getElementById("openLogin");
+ const logoutBtn = document.getElementById("logoutBtn");
+ const loginStatus = document.getElementById("loginStatus");
+ const userPill = document.getElementById("userPill");
+ const userLabel = document.getElementById("userLabel");
+ const modalBackdrop = document.getElementById("modalBackdrop");
+ const closeModal = document.getElementById("closeModal");
+ const cancelModal = document.getElementById("cancelModal");
+ const tabLogin = document.getElementById("tabLogin");
+ const tabCreate = document.getElementById("tabCreate");
+ const submitBtn = document.getElementById("submitBtn");
+ const userId = document.getElementById("userId");
+ const pin = document.getElementById("pin");
+ const err = document.getElementById("err");
+ const enterPortalBtn = document.getElementById("enterPortalBtn");
+ let mode = "login"; // login | create
+ let videoDone = false;
+ function loadUsers(){
+   try { return JSON.parse(localStorage.getItem(USERS_KEY) || "{}"); }
+   catch(e){ return {}; }
+ }
+ function saveUsers(users){
+   localStorage.setItem(USERS_KEY, JSON.stringify(users));
+ }
+ function getCurrentUser(){
+   return localStorage.getItem(CURRENT_KEY) || "";
+ }
+ function setCurrentUser(u){
+   localStorage.setItem(CURRENT_KEY, u);
+ }
+ function clearCurrentUser(){
+   localStorage.removeItem(CURRENT_KEY);
+ }
+ function openModal(){
+   err.style.display = "none";
+   err.textContent = "";
+   modalBackdrop.style.display = "flex";
+   userId.focus();
+ }
+ function closeModalFn(){
+   modalBackdrop.style.display = "none";
+   userId.value = "";
+   pin.value = "";
+ }
+ function setMode(m){
+   mode = m;
+   tabLogin.classList.toggle("active", m === "login");
+   tabCreate.classList.toggle("active", m === "create");
+   submitBtn.textContent = (m === "login") ? "Log in" : "Create account";
+   err.style.display = "none";
+   err.textContent = "";
+ }
+ function showError(msg){
+   err.textContent = msg;
+   err.style.display = "block";
+ }
+ function refreshAuthUI(){
+   const u = getCurrentUser();
+   if(u){
+     userPill.style.display = "inline-flex";
+     userLabel.textContent = u;
+     loginStatus.textContent = "Logged in ✓ Progress will be saved.";
+     openLogin.style.display = "none";
+     logoutBtn.style.display = "inline-flex";
+   } else {
+     userPill.style.display = "none";
+     loginStatus.textContent = "Please log in to save your progress.";
+     openLogin.style.display = "inline-flex";
+     logoutBtn.style.display = "none";
+   }
+   restoreVideoCompletionIfDone();
+   refreshEnterButton();
+ }
+ /* =========================
+    VIDEO COMPLETION SAVED PER USER
+    key: sidf_done_welcome:<userId>
+ ========================== */
+ function doneKey(){
+   const u = getCurrentUser();
+   return u ? ("sidf_done_welcome:" + u) : "sidf_done_welcome:guest";
+ }
+ function restoreVideoCompletionIfDone(){
+   const u = getCurrentUser();
+   if(!u){
+     videoDone = false;
+     return;
+   }
+   videoDone = localStorage.getItem(doneKey()) === "true";
+   if(videoDone){
+     bar.style.width = "100%";
+     txt.textContent = "100%";
+     note.textContent = "Completed ✓";
+   }
+ }
+ function setVideoDone(){
+   const u = getCurrentUser();
+   if(!u) return;
+   localStorage.setItem(doneKey(), "true");
+   videoDone = true;
+ }
+ function refreshEnterButton(){
+   const loggedIn = !!getCurrentUser();
+   if(loggedIn && videoDone){
+     enterPortalBtn.style.pointerEvents = "auto";
+     enterPortalBtn.style.opacity = "1";
+     enterPortalBtn.href = "overview.html";
+   } else {
+     enterPortalBtn.style.pointerEvents = "none";
+     enterPortalBtn.style.opacity = "0.5";
+     enterPortalBtn.href = "#";
+   }
+ }
+ openLogin.addEventListener("click", (e)=>{ e.preventDefault(); openModal(); });
+ logoutBtn.addEventListener("click", (e)=>{
+   e.preventDefault();
+   clearCurrentUser();
+   refreshAuthUI();
+ });
+ closeModal.addEventListener("click", closeModalFn);
+ cancelModal.addEventListener("click", closeModalFn);
+ tabLogin.addEventListener("click", ()=> setMode("login"));
+ tabCreate.addEventListener("click", ()=> setMode("create"));
+ modalBackdrop.addEventListener("click", (e)=>{
+   if(e.target === modalBackdrop) closeModalFn();
+ });
+ submitBtn.addEventListener("click", ()=>{
+   const u = (userId.value || "").trim();
+   const p = (pin.value || "").trim();
+   if(!u) return showError("Please enter a User ID.");
+   if(!/^\d{4,8}$/.test(p)) return showError("PIN must be 4–8 digits.");
+   const users = loadUsers();
+   if(mode === "create"){
+     if(users[u]) return showError("Account already exists. Please log in.");
+     users[u] = p;
+     saveUsers(users);
+     setCurrentUser(u);
+     closeModalFn();
+     refreshAuthUI();
+     return;
+   }
+   // login
+   if(!users[u]) return showError("Account not found. Please create an account.");
+   if(users[u] !== p) return showError("Incorrect PIN.");
+   setCurrentUser(u);
+   closeModalFn();
+   refreshAuthUI();
+ });
+ /* =========================
+    VIDEO GATING (no skipping)
+ ========================== */
+ const video = document.getElementById("welcomeVideo");
+ const bar = document.getElementById("progressBar");
+ const txt = document.getElementById("progressText");
+ const note = document.getElementById("watchNote");
+ let maxWatched = 0;
+let videoDone = false;
+ function updateProgress() {
+   const dur = video.duration || 0;
+   if (!dur) return;
+   // If already completed (per user), keep 100%
+   if(videoDone){
+     bar.style.width = "100%";
+     txt.textContent = "100%";
+     return;
+   }
+   if (!video.paused && video.currentTime > maxWatched) {
+     maxWatched = video.currentTime;
+   }
+   const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+   bar.style.width = pct + "%";
+   txt.textContent = pct + "%";
+ }
+ video.addEventListener("seeking", () => {
+   // prevent skipping forward (unless completed)
+   if(videoDone) return;
+   if (video.currentTime > maxWatched + 0.25) {
+     video.currentTime = maxWatched;
+   }
+ });
+ video.addEventListener("timeupdate", updateProgress);
+video.addEventListener("ended", () => {
+ bar.style.width = "100%";
+ txt.textContent = "100%";
+ videoDone = true;
+});
+ video.addEventListener("play", updateProgress);
+ video.addEventListener("loadedmetadata", updateProgress);
+ video.addEventListener("keydown", (e) => {
+   const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+   if (keys.includes(e.key)) e.preventDefault();
+ });
+ video.addEventListener("ended", () => {
+   // must be logged in to unlock
+   if(!getCurrentUser()){
+     note.textContent = "Please log in to save progress and unlock Enter Portal.";
+     return;
+   }
+   setVideoDone();
+   updateProgress();
+   bar.style.width = "100%";
+   txt.textContent = "100%";
+   note.textContent = "Completed ✅ You can continue.";
+   refreshEnterButton();
+ });
+ // Initialize
+ setMode("login");
+ refreshAuthUI();
+</script>
+</body>
+</html>
