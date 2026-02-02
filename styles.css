@@ -1,0 +1,2520 @@
+:root{
+
+  --bg1:#061b16;
+
+  --bg2:#0b2a23;
+
+  --card:#ffffff;
+
+  --text:#0f172a;
+
+  --muted:#64748b;
+
+  --sidf-green:#0b6b4f;
+
+  --sidf-teal:#0f8a6a;
+
+  --sidf-soft:#e6f4ef;
+
+  --border:#e5e7eb;
+
+  --shadow: 0 18px 50px rgba(0,0,0,.18);
+
+  --radius: 18px;
+
+  --max: 1120px;
+
+}
+
+*{ box-sizing:border-box; }
+
+html,body{ height:100%; }
+
+body{
+
+  margin:0;
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  color:var(--text);
+
+  background:#071a15;
+
+}
+
+.bg{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+
+    radial-gradient(900px 420px at 15% 10%, rgba(15,138,106,.28), transparent 60%),
+
+    radial-gradient(900px 520px at 85% 35%, rgba(11,107,79,.26), transparent 55%),
+
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+
+  z-index:-1;
+
+}
+
+.shell{
+
+  max-width: var(--max);
+
+  margin: 0 auto;
+
+  padding: 22px 16px 28px;
+
+}
+
+.topbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom: 16px;
+
+}
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.sidf-logo{
+
+  height:46px;
+
+  background:#fff;
+
+  padding:6px 10px;
+
+  border-radius:12px;
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+
+}
+
+.brand-title{
+
+  font-weight:900;
+
+  letter-spacing:.3px;
+
+  color:#fff;
+
+  font-size:18px;
+
+  line-height:1.1;
+
+}
+
+.brand-sub{
+
+  color: rgba(255,255,255,.75);
+
+  font-size:13px;
+
+}
+
+.chip{
+
+  color:#eafff7;
+
+  border: 1px solid rgba(255,255,255,.18);
+
+  background: rgba(255,255,255,.06);
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+}
+
+.card{
+
+  background: var(--card);
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
+
+  padding: 18px;
+
+}
+
+.hero{
+
+  display:grid;
+
+  grid-template-columns: 1.1fr .9fr;
+
+  gap: 16px;
+
+  padding: 22px;
+
+}
+
+@media (max-width: 900px){
+
+  .hero{ grid-template-columns: 1fr; }
+
+}
+
+h1{ margin:0 0 10px; font-size: 34px; }
+
+h2{ margin: 12px 0 10px; font-size: 18px; }
+
+p{ margin: 0 0 12px; }
+
+.muted{ color: var(--muted); }
+
+.tiny{ font-size: 12px; }
+
+.callout{
+
+  background: var(--sidf-soft);
+
+  border: 1px solid rgba(11,107,79,.18);
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+  margin: 14px 0;
+
+}
+
+.callout-title{
+
+  font-weight: 850;
+
+  margin-bottom: 8px;
+
+  color: #0b3e30;
+
+}
+
+ul{ margin: 8px 0 0; padding-left: 18px; }
+
+li{ margin: 6px 0; }
+
+.actions{
+
+  display:flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 14px;
+
+}
+
+.actions.spread{
+
+  justify-content: space-between;
+
+  align-items:center;
+
+}
+
+.btn{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding: 12px 14px;
+
+  border-radius: 12px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  border: 1px solid transparent;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  gap: 10px;
+
+}
+
+.btn.primary{
+
+  background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+  color:#fff;
+
+  box-shadow: 0 10px 22px rgba(11,107,79,.25);
+
+}
+
+.btn.primary:hover{ filter: brightness(1.03); }
+
+.btn.ghost{
+
+  background: #fff;
+
+  border-color: var(--border);
+
+  color: #0f172a;
+
+}
+
+.btn.ghost:hover{ background:#f8fafc; }
+
+.divider{
+
+  height:1px;
+
+  background: var(--border);
+
+  margin: 14px 0;
+
+}
+
+.footer{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap: 12px;
+
+  margin-top: 14px;
+
+  color: rgba(255,255,255,.72);
+
+  font-size: 12px;
+
+}
+
+/* Panels / stats */
+
+.panel{
+
+  height:100%;
+
+  border-radius: 16px;
+
+  border: 1px solid var(--border);
+
+  background: linear-gradient(180deg, #ffffff, #f6fffb);
+
+  padding: 14px;
+
+}
+
+.panel-title{
+
+  font-weight: 900;
+
+  margin-bottom: 12px;
+
+  color: #0b3e30;
+
+}
+
+.statgrid{
+
+  display:grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+}
+
+.stat{
+
+  border:1px solid rgba(11,107,79,.16);
+
+  border-radius: 14px;
+
+  padding: 10px;
+
+  background: rgba(230,244,239,.55);
+
+}
+
+.stat-label{ font-size: 12px; color: #0b3e30; opacity:.75; }
+
+.stat-value{ font-weight: 900; margin-top: 3px; }
+
+/* Layout helpers */
+
+.two-col{
+
+  display:grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 16px;
+
+}
+
+@media (max-width: 900px){
+
+  .two-col{ grid-template-columns: 1fr; }
+
+}
+
+/* Images */
+
+.figure{
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  overflow:hidden;
+
+  background:#fff;
+
+}
+
+.figure img{
+
+  width:100%;
+
+  display:block;
+
+}
+
+.caption{
+
+  padding: 10px 12px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+}
+
+/* Simple tree builder */
+
+.tree{
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 14px;
+
+  background:#fff;
+
+}
+
+.tree-row{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+}
+
+.node{
+
+  padding: 10px 12px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f8fafc;
+
+  font-weight: 900;
+
+  min-width: 210px;
+
+  text-align:center;
+
+  position:relative;
+
+}
+
+.node.small{ min-width: 160px; font-weight: 850; }
+
+.node.highlight{
+
+  border-color: rgba(15,138,106,.45);
+
+  background: rgba(230,244,239,.75);
+
+}
+
+.tree-line{
+
+  height: 18px;
+
+  width: 2px;
+
+  margin: 8px auto;
+
+  background: rgba(15,138,106,.35);
+
+}
+
+/* Flow chart */
+
+.flow{
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 14px;
+
+  background:#fff;
+
+}
+
+.flow-rail{
+
+  display:flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  align-items: center;
+
+}
+
+.flow-step{
+
+  display:flex;
+
+  align-items:center;
+
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  border-radius: 14px;
+
+  border:1px solid var(--border);
+
+  background:#f8fafc;
+
+  font-weight: 900;
+
+}
+
+.badge{
+
+  width:26px; height:26px;
+
+  border-radius: 999px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#fff;
+
+  font-weight: 900;
+
+  background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+}
+
+.arrow{
+
+  font-weight: 900;
+
+  color: #0b3e30;
+
+  opacity:.7;
+
+}
+
+/* Financing cards */
+
+.grid{
+
+  display:grid;
+
+  gap: 12px;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+}
+
+.loan-card{
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 14px;
+
+  background:#fff;
+
+}
+
+.loan-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap: 10px;
+
+  margin-bottom: 8px;
+
+}
+
+.icon{
+
+  width:40px; height:40px;
+
+  border-radius: 14px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#0b3e30;
+
+  background: rgba(230,244,239,.8);
+
+  border: 1px solid rgba(11,107,79,.18);
+
+  font-size: 20px;
+
+}
+
+.loan-title{
+
+  font-weight: 950;
+
+  font-size: 16px;
+
+}
+
+.kv{
+
+  display:grid;
+
+  gap: 6px;
+
+}
+
+.kv b{ font-weight: 900; }
+
+.kv p{ margin:0; color: var(--muted); }
+
+.table{
+
+  width:100%;
+
+  border-collapse: collapse;
+
+  overflow:hidden;
+
+  border-radius: 14px;
+
+  border:1px solid var(--border);
+
+}
+
+.table th, .table td{
+
+  padding: 10px 12px;
+
+  border-bottom:1px solid var(--border);
+
+  vertical-align: top;
+
+}
+
+.table th{
+
+  text-align:left;
+
+  background: rgba(230,244,239,.65);
+
+  color: #0b3e30;
+
+  font-weight: 950;
+
+}
+
+.table tr:last-child td{ border-bottom:none; }
+
+.note{
+
+  margin-top: 12px;
+
+  padding: 12px;
+
+  border-radius: 14px;
+
+  border: 1px dashed rgba(11,107,79,.35);
+
+  background: rgba(230,244,239,.35);
+
+  color: #0b3e30;
+
+}
+<a class="btn primary" href="modeling.html">Continue</a>
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Financial Modeling | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .grid{
+
+      display:grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 12px;
+
+      margin-top: 12px;
+
+    }
+
+    @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
+
+    .box{
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background: #fff;
+
+      padding: 14px;
+
+    }
+
+    .heading{
+
+      display:flex;
+
+      align-items:center;
+
+      gap: 10px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .badge{
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 999px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      background: rgba(230,244,239,.7);
+
+      border: 1px solid rgba(11,107,79,.18);
+
+      font-weight: 950;
+
+      color:#0b3e30;
+
+    }
+
+    .box h2{ margin: 0; }
+
+    .muted2{ margin: 6px 0 0; color: var(--muted); line-height: 1.55; }
+
+    .sub{
+
+      margin-top: 10px;
+
+      padding: 10px 12px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(11,107,79,.14);
+
+      background: rgba(230,244,239,.35);
+
+      color: #0b3e30;
+
+      font-weight: 850;
+
+    }
+
+    .btn-row{
+
+      margin-top: 12px;
+
+      display:flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+    }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Step 6 · Financial Modeling</div>
+</header>
+<section class="card">
+<h1>Financial Modeling</h1>
+<p class="muted">
+
+        Financial modeling supports the appraisal by translating assumptions into loan sizing and viability indicators.
+</p>
+<div class="grid">
+<!-- Working Capital Model -->
+<div class="box">
+<div class="heading">
+<div class="badge">1</div>
+<div>
+<h2>Working Capital Model</h2>
+<p class="muted2">Used mainly to assess liquidity, leverage, and repayment capacity for working capital financing.</p>
+</div>
+</div>
+<div class="sub">Outputs typically include WC need, repayment capacity, and key ratios.</div>
+<div class="btn-row">
+<a class="btn primary" href="wc-model-req.html">Requirements</a>
+</div>
+</div>
+<!-- Project Finance Models -->
+<div class="box">
+<div class="heading">
+<div class="badge">2</div>
+<div>
+<h2>Project Finance and Others Model</h2>
+<p class="muted2">
+
+                Used to assess feasibility and long-term cash flows. It is typically developed in two views:
+<b>Consolidated</b> and <b>Standalone</b>.
+</p>
+</div>
+</div>
+<div class="sub">Divides into: Consolidated model + Standalone model.</div>
+<div class="btn-row">
+<a class="btn primary" href="pf-model-req.html">Requirements</a>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="financing.html">Back</a>
+<a class="btn primary" href="final.html">Continue</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>Financial Modeling</span>
+</footer>
+</main>
+</body>
+</html>
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WC Model Requirements | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .boxed{
+
+      border: 1px solid rgba(11,107,79,.18);
+
+      background: rgba(230,244,239,.55);
+
+      border-radius: 16px;
+
+      padding: 14px;
+
+      margin-top: 12px;
+
+    }
+
+    .list{
+
+      margin: 10px 0 0;
+
+      padding-left: 18px;
+
+    }
+
+    .list li{
+
+      margin: 8px 0;
+
+    }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">WC Model · Requirements</div>
+</header>
+<section class="card">
+<h1>Working Capital Model — Requirements</h1>
+<div class="boxed">
+<b>Requirements (from Financial Statements):</b>
+<ul class="list">
+<li>Income Statement and Balance Sheet</li>
+<li>Cash Flow Statement</li>
+</ul>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="modeling.html">Back</a>
+<a class="btn primary" href="modeling.html">Done</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>WC Model</span>
+</footer>
+</main>
+</body>
+</html>
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PF Model Requirements | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .note2{
+
+      border: 1px solid rgba(11,107,79,.18);
+
+      background: rgba(230,244,239,.55);
+
+      border-radius: 16px;
+
+      padding: 14px;
+
+      margin-top: 12px;
+
+      line-height: 1.55;
+
+      color: #0b3e30;
+
+      font-weight: 700;
+
+    }
+
+    .circles{
+
+      display:grid;
+
+      grid-template-columns: 1fr 1fr 1fr;
+
+      gap: 12px;
+
+      margin-top: 14px;
+
+    }
+
+    @media (max-width: 900px){ .circles{ grid-template-columns: 1fr; } }
+
+    .circle-card{
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background:#fff;
+
+      padding: 14px;
+
+    }
+
+    .circle{
+
+      width: 92px;
+
+      height: 92px;
+
+      border-radius: 999px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      margin: 0 auto 10px;
+
+      background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+      color:#fff;
+
+      font-weight: 950;
+
+      font-size: 16px;
+
+      text-align:center;
+
+      padding: 10px;
+
+    }
+
+    .subhead{
+
+      margin: 0 0 8px;
+
+      font-weight: 950;
+
+      color:#0b3e30;
+
+      text-align:center;
+
+    }
+
+    .k{
+
+      font-size: 12px;
+
+      color: var(--muted);
+
+      text-align:center;
+
+      margin: 0 0 10px;
+
+    }
+
+    .items{
+
+      margin: 0;
+
+      padding-left: 18px;
+
+    }
+
+    .items li{ margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">PF Model · Requirements</div>
+</header>
+<section class="card">
+<h1>Project Finance Model — Requirements</h1>
+<div class="note2">
+<b>Note:</b> There are two types: <b>Consolidated</b> and <b>Standalone</b>.
+
+        Unlike the consolidated model, a standalone model does not require historical financials.
+</div>
+<div class="circles">
+<!-- CREDIT -->
+<div class="circle-card">
+<div class="circle">Credit</div>
+<h3 class="subhead">Credit Requirements</h3>
+<p class="k">Inputs mainly from financial statements and credit analysis.</p>
+<ul class="items">
+<li>Income Statement and Balance Sheet</li>
+<li>Cash conversion cycle</li>
+<li>SG&amp;A percentage (note: subtract Depreciation &amp; Amortization)</li>
+<li>PP&amp;E (for the most recent year)</li>
+<li>Historical financials (only for consolidated)</li>
+</ul>
+</div>
+<!-- MARKET -->
+<div class="circle-card">
+<div class="circle">Market</div>
+<h3 class="subhead">Market Requirements</h3>
+<p class="k">From (FMR) Full Market Report.</p>
+<ul class="items">
+<li>Product line</li>
+<li>Selling price</li>
+<li>Raw material cost</li>
+<li>Volume</li>
+</ul>
+</div>
+<!-- TECHNICAL -->
+<div class="circle-card">
+<div class="circle">Technical</div>
+<h3 class="subhead">Technical Requirements</h3>
+<p class="k">From (FTR) Full Technical Report.</p>
+<ul class="items">
+<li>Indirect &amp; direct salary</li>
+<li>Utilities</li>
+<li>Capital expenditure, depreciation, amortization, and maintenance rate</li>
+</ul>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="modeling.html">Back</a>
+<a class="btn primary" href="modeling.html">Done</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>PF Model</span>
+</footer>
+</main>
+</body>
+</html>
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Project Finance | Appraisal & Examples</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .section-head{ display:flex; align-items:flex-start; gap:12px; margin-top: 8px; }
+
+    .section-number{
+
+      width:42px; height:42px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+
+      background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+      color:#fff; font-weight:950; font-size:18px; flex:0 0 auto;
+
+    }
+
+    .boxed{ border:1px solid var(--border); border-radius:16px; background:#fff; padding:14px; margin-top:12px; }
+
+    .icon-list{ list-style:none; padding:0; margin:10px 0 0; display:grid; gap:10px; }
+
+    .icon-list li{
+
+      display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border-radius:14px;
+
+      border:1px solid rgba(11,107,79,.14); background: rgba(230,244,239,.35);
+
+    }
+
+    .li-icon{
+
+      width:28px; height:28px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+
+      background:#fff; border:1px solid rgba(11,107,79,.18); font-size:16px; flex:0 0 auto; margin-top:1px;
+
+    }
+
+    .li-text{ margin:0; color: var(--text); }
+
+    .sub-muted{ margin:6px 0 0; color: var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Project Finance · Appraisal</div>
+</header>
+<section class="card">
+<h1>Project Finance — Appraisal & Examples</h1>
+<div class="note">
+<b>RM Responsibility:</b> For project finance, the RM officer prepares the appraisal focusing on
+
+        project feasibility, sponsor strength, long-term cash-flow generation, and repayment capacity.
+</div>
+<!-- 1 -->
+<div class="boxed">
+<div class="section-head">
+<div class="section-number">1</div>
+<div>
+<h2 style="margin:0;">Ownership Assessment Report</h2>
+<p class="muted" style="margin:4px 0 0;">
+
+              Covers ownership, sponsor strength, and credit quality of the borrower and related parties.
+</p>
+</div>
+</div>
+<ul class="icon-list">
+<li><div class="li-icon">🏛️</div><p class="li-text"><b>Ownership structure</b>, shareholders, and company management structure</p></li>
+<li><div class="li-icon">📊</div><p class="li-text"><b>Financial analysis</b> for the borrower and related parties</p></li>
+<li><div class="li-icon">🧾</div><p class="li-text"><b>Net worth assessment</b></p></li>
+<li><div class="li-icon">🔎</div><p class="li-text"><b>Credit check</b> and SIDF relationship</p></li>
+</ul>
+</div>
+<!-- 2 -->
+<div class="boxed">
+<div class="section-head">
+<div class="section-number">2</div>
+<div>
+<h2 style="margin:0;">Project Evaluation Report (PER)</h2>
+<p class="muted" style="margin:4px 0 0;">
+
+              Summarizes the project, evaluation findings, loan structure, and recommendation.
+</p>
+</div>
+</div>
+<ul class="icon-list">
+<li><div class="li-icon">🧭</div><p class="li-text"><b>Project background</b>, scope, and rationale</p></li>
+<li><div class="li-icon">👥</div><p class="li-text"><b>Ownership assessment</b></p></li>
+<li><div class="li-icon">🏭</div><p class="li-text"><b>Products and capacities</b></p></li>
+<li><div class="li-icon">🛠️</div><p class="li-text"><b>Project implementation status</b></p></li>
+<li><div class="li-icon">📈</div><p class="li-text"><b>Market section</b></p></li>
+<li><div class="li-icon">📊</div><p class="li-text"><b>Financial analysis summary</b></p></li>
+<li><div class="li-icon">💰</div><p class="li-text"><b>Project costs</b> and <b>sources of finance</b></p></li>
+<li><div class="li-icon">💳</div><p class="li-text"><b>Loan section</b></p></li>
+<li><div class="li-icon">✅</div><p class="li-text"><b>Final recommendation</b></p></li>
+</ul>
+</div>
+<!-- 3 -->
+<div class="boxed">
+<div class="section-head">
+<div class="section-number">3</div>
+<div>
+<h2 style="margin:0;">Financial Model</h2>
+<p class="muted" style="margin:4px 0 0;">
+
+              RM develops two perspectives: standalone (project) and consolidated (sponsor).
+</p>
+</div>
+</div>
+<ul class="icon-list">
+<li>
+<div class="li-icon">🏗️</div>
+<div>
+<p class="li-text"><b>Standalone model</b> to assess the project itself</p>
+<div class="sub-muted">Project cash flows and project viability</div>
+</div>
+</li>
+<li>
+<div class="li-icon">🏢</div>
+<div>
+<p class="li-text"><b>Consolidated model</b> to assess sponsor’s overall strength</p>
+<div class="sub-muted">Group financial capacity</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="financing.html">Back</a>
+<a class="btn primary" href="financing.html">Done</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>Examples</span>
+</footer>
+</main>
+</body>
+</html>
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Financial Modeling | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .grid{
+
+      display:grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 12px;
+
+      margin-top: 12px;
+
+    }
+
+    @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
+
+    .box{
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background: #fff;
+
+      padding: 14px;
+
+    }
+
+    .heading{
+
+      display:flex;
+
+      align-items:flex-start;
+
+      gap: 10px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .icon-badge{
+
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 14px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      background: rgba(230,244,239,.7);
+
+      border: 1px solid rgba(11,107,79,.18);
+
+      font-size: 18px;
+
+      flex: 0 0 auto;
+
+      margin-top: 2px;
+
+    }
+
+    .badge{
+
+      width: 30px;
+
+      height: 30px;
+
+      border-radius: 999px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+      color:#fff;
+
+      font-weight: 950;
+
+      font-size: 13px;
+
+      flex: 0 0 auto;
+
+      margin-top: 6px;
+
+    }
+
+    .muted2{ margin: 6px 0 0; color: var(--muted); line-height: 1.55; }
+
+    .sub{
+
+      margin-top: 10px;
+
+      padding: 10px 12px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(11,107,79,.14);
+
+      background: rgba(230,244,239,.35);
+
+      color: #0b3e30;
+
+      font-weight: 850;
+
+    }
+
+    .btn-row{
+
+      margin-top: 12px;
+
+      display:flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+    }
+
+    .inline-actions{
+
+      display:flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+      margin-top: 10px;
+
+    }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Financial Modeling</div>
+</header>
+<section class="card">
+<h1>Financial Modeling</h1>
+<div class="grid">
+<!-- Working Capital Model -->
+<div class="box">
+<div class="heading">
+<div class="icon-badge">💼</div>
+<div>
+<div style="display:flex; align-items:center; gap:10px;">
+<div class="badge">1</div>
+<h2 style="margin:0;">Working Capital Model</h2>
+</div>
+<p class="muted2">
+
+                Does not require (FTR) Full Technical Report and (FMR) Full Market Report.
+</p>
+</div>
+</div>
+<div class="btn-row">
+<a class="btn primary" href="wc-model-req.html">Requirements</a>
+</div>
+</div>
+<!-- Project Finance Models -->
+<div class="box">
+<div class="heading">
+<div class="icon-badge">🏗️</div>
+<div>
+<div style="display:flex; align-items:center; gap:10px;">
+<div class="badge">2</div>
+<h2 style="margin:0;">Project Finance and Others Model</h2>
+</div>
+<p class="muted2">
+
+                Used to assess feasibility and long-term cash flows.
+</p>
+</div>
+</div>
+<div class="sub">Divides into: Consolidated model + Standalone model</div>
+<div class="inline-actions">
+<a class="btn primary" href="pf-model-req.html">Requirements</a>
+<a class="btn ghost" href="models.html">Standalone vs Consolidated</a>
+</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="financing.html">Back</a>
+<a class="btn primary" href="final.html">Continue</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>Financial Modeling</span>
+</footer>
+</main>
+</body>
+</html>
+ 
+<!-- 4 -->
+<div class="boxed">
+<div class="section-head">
+<div class="section-number">4</div>
+<div>
+<h2 style="margin:0;">Risk Assessment Report</h2>
+<p class="muted" style="margin:4px 0 0;">
+
+        Evaluates the overall risk profile of the project across key dimensions.
+</p>
+</div>
+</div>
+<ul class="icon-list">
+<li>
+<div class="li-icon">🛠️</div>
+<p class="li-text"><b>Technical risk level</b></p>
+</li>
+<li>
+<div class="li-icon">📈</div>
+<p class="li-text"><b>Market risk level</b></p>
+</li>
+<li>
+<div class="li-icon">👔</div>
+<p class="li-text"><b>Management risk level</b></p>
+</li>
+<li>
+<div class="li-icon">⚙️</div>
+<p class="li-text"><b>Financial implementation risk level</b></p>
+</li>
+<li>
+<div class="li-icon">🧱</div>
+<p class="li-text"><b>Raw material risk level</b></p>
+</li>
+<li>
+<div class="li-icon">🔐</div>
+<p class="li-text"><b>Security risk level</b></p>
+</li>
+</ul>
+</div>
+ 
+<div class="btn-row">
+<a class="btn primary" href="GulfPack_WC_model.xlsx" download>
+
+    Download WC Financial Model example (GulfPack)
+</a>
+</div>
+ 
+<li>
+<div class="li-icon">🔎</div>
+<p class="li-text">
+<b>Credit check</b> and SIDF relationship
+&nbsp;—&nbsp;
+<a href="SIDF_Credit_Check_Memo.pdf" download
+
+       style="color:#0b7a5a; font-weight:900; text-decoration:none;">
+
+      Download memo
+</a>
+</p>
+</li>
+ 
+<div class="btn-row">
+<a class="btn primary" href="Ownership_Example_Alrashid.pdf" download>
+
+    Download Ownership example (Alrashid Indust.)
+</a>
+</div>
+ 
+<div class="btn-row">
+<a class="btn primary" href="PER_Example_Alrashid.pdf" download>
+
+    Download PER example (Alrashid Indust.)
+</a>
+</div>
+ 
+<div class="btn-row">
+<a class="btn primary" href="Risk_Assessment_Example.pdf" download>
+
+    Download Risk Assessment example
+</a>
+</div>
+ 
+<div class="kv">
+<div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#fff;">
+<img src="start-image.png" alt="SIDF onboarding" style="width:100%; display:block;">
+</div>
+</div>
+ 
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF RM Credit Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Step 0 · Welcome</div>
+</header>
+<section class="card">
+<h1>Welcome to the Saudi Industrial Development Fund</h1>
+<p class="muted" style="margin-top:8px;">
+
+        This portal helps Co-op students and new RM (Credit) team members get started.
+</p>
+<!-- Mandatory video -->
+<div style="margin-top:16px;">
+<div style="border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#000;">
+<video
+
+            id="welcomeVideo"
+
+            width="100%"
+
+            controls
+
+            controlsList="nodownload noplaybackrate"
+
+            disablePictureInPicture
+
+            playsinline
+
+            preload="metadata"
+
+            style="background:#000;"
+
+            oncontextmenu="return false;"
+>
+<source src="welcome-video.mp4" type="video/mp4">
+
+            Your browser does not support the video tag.
+</video>
+</div>
+<!-- Progress tracker -->
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:800;">Completion</div>
+<div id="progressText" class="muted" style="font-weight:900;">0%</div>
+</div>
+<div style="margin-top:8px; height:10px; border-radius:999px; overflow:hidden; background:rgba(0,0,0,.08); border:1px solid var(--border);">
+<div id="progressBar" style="height:100%; width:0%; background:linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));"></div>
+</div>
+<p id="watchNote" class="muted" style="margin-top:8px;">
+
+            Please watch the full introduction video to proceed. Skipping ahead is disabled.
+</p>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="#" style="pointer-events:none; opacity:0.4;">Back</a>
+<!-- Locked until video ends -->
+<a id="continueBtn" class="btn primary" href="#"
+
+           style="pointer-events:none; opacity:0.5;">
+
+          Enter Portal
+</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>SIDF RM Credit Onboarding</span>
+</footer>
+</main>
+<script>
+
+    const video = document.getElementById("welcomeVideo");
+
+    const btn = document.getElementById("continueBtn");
+
+    const bar = document.getElementById("progressBar");
+
+    const txt = document.getElementById("progressText");
+
+    const note = document.getElementById("watchNote");
+
+    let maxWatched = 0;
+
+    function updateProgress() {
+
+      const dur = video.duration || 0;
+
+      if (!dur) return;
+
+      // Track furthest watched point (only grows)
+
+      if (!video.paused && video.currentTime > maxWatched) {
+
+        maxWatched = video.currentTime;
+
+      }
+
+      const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+
+      bar.style.width = pct + "%";
+
+      txt.textContent = pct + "%";
+
+    }
+
+    // Prevent seeking forward beyond maxWatched
+
+    video.addEventListener("seeking", () => {
+
+      if (video.currentTime > maxWatched + 0.25) {
+
+        video.currentTime = maxWatched;
+
+      }
+
+    });
+
+    // Update progress frequently
+
+    video.addEventListener("timeupdate", updateProgress);
+
+    video.addEventListener("play", updateProgress);
+
+    video.addEventListener("loadedmetadata", updateProgress);
+
+    // Block common keyboard skipping when video is focused
+
+    video.addEventListener("keydown", (e) => {
+
+      const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+
+      if (keys.includes(e.key)) e.preventDefault();
+
+    });
+
+    // Unlock continue only when video ends
+
+    video.addEventListener("ended", () => {
+
+      updateProgress();
+
+      bar.style.width = "100%";
+
+      txt.textContent = "100%";
+
+      btn.style.pointerEvents = "auto";
+
+      btn.style.opacity = "1";
+
+      btn.href = "overview.html"; // next page
+
+      note.textContent = "Completed ✅ You can continue.";
+
+    });
+</script>
+</body>
+</html>
+ 
+<video id="welcomeVideo" width="100%" controls
+
+  controlsList="nodownload noplaybackrate"
+
+  disablePictureInPicture
+
+  playsinline
+
+  preload="metadata"
+
+  style="background:#000;"
+>
+<source src="welcome-video.mp4" type="video/mp4">
+
+  Your browser does not support the video tag.
+</video>
+ 
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:800;">Completion</div>
+<div id="progressText" class="muted" style="font-weight:900;">0%</div>
+</div>
+<div style="margin-top:8px; height:10px; border-radius:999px; overflow:hidden; background:rgba(0,0,0,.08); border:1px solid var(--border);">
+<div id="progressBar" style="height:100%; width:0%; background:linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));"></div>
+</div>
+<p id="watchNote" class="muted" style="margin-top:8px;">
+
+    Please watch the full introduction video to proceed. Skipping ahead is disabled.
+</p>
+</div>
+ 
+<script>
+
+  const video = document.getElementById("welcomeVideo");
+
+  const btn = document.getElementById("continueBtn");
+
+  const bar = document.getElementById("progressBar");
+
+  const txt = document.getElementById("progressText");
+
+  const note = document.getElementById("watchNote");
+
+  let maxWatched = 0;      // furthest watched time (seconds)
+
+  let allowSeekBack = true;
+
+  function updateProgress() {
+
+    const dur = video.duration || 0;
+
+    if (!dur) return;
+
+    // Track furthest watched point (only when playing / moving forward normally)
+
+    if (!video.paused && video.currentTime > maxWatched) {
+
+      maxWatched = video.currentTime;
+
+    }
+
+    const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+
+    bar.style.width = pct + "%";
+
+    txt.textContent = pct + "%";
+
+  }
+
+  // Prevent seeking forward beyond maxWatched
+
+  video.addEventListener("seeking", () => {
+
+    // Allow seeking backward (rewind) but block forward skipping
+
+    if (video.currentTime > maxWatched + 0.25) {
+
+      allowSeekBack = false;
+
+      video.currentTime = maxWatched;
+
+    }
+
+  });
+
+  // Some browsers fire seeked after seeking; keep it tight
+
+  video.addEventListener("seeked", () => {
+
+    if (!allowSeekBack) {
+
+      allowSeekBack = true;
+
+    }
+
+  });
+
+  // Update progress frequently
+
+  video.addEventListener("timeupdate", updateProgress);
+
+  video.addEventListener("play", updateProgress);
+
+  video.addEventListener("loadedmetadata", updateProgress);
+
+  // Block keyboard skipping when video is focused (arrows, end/home, etc.)
+
+  video.addEventListener("keydown", (e) => {
+
+    const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+
+    if (keys.includes(e.key)) e.preventDefault();
+
+  });
+
+  // Unlock continue only when video ends
+
+  video.addEventListener("ended", () => {
+
+    updateProgress();
+
+    bar.style.width = "100%";
+
+    txt.textContent = "100%";
+
+    btn.style.pointerEvents = "auto";
+
+    btn.style.opacity = "1";
+
+    btn.href = "overview.html"; // next page
+
+    note.textContent = "Completed ✅ You can continue.";
+
+  });
+</script>
+ 
+<div style="max-width:820px; margin:0 auto;">
+ 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF Overview | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+    .content-wrap{
+
+      max-width: 900px;
+
+      margin: 0 auto;
+
+    }
+
+    .media-card{
+
+      border-radius: 16px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      background: #000;
+
+    }
+
+    .img-card{
+
+      border-radius: 16px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      background: #fff;
+
+      margin-top: 12px;
+
+    }
+
+    .complete-pill{
+
+      display:none;
+
+      align-items:center;
+
+      gap:8px;
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(11,107,79,.22);
+
+      background: rgba(230,244,239,.8);
+
+      color:#0b3e30;
+
+      font-weight: 950;
+
+      font-size: 12px;
+
+      margin-left: auto;
+
+    }
+
+    .pill-dot{
+
+      width: 10px;
+
+      height: 10px;
+
+      border-radius: 999px;
+
+      background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+    }
+
+    .progress-row{
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      gap:10px;
+
+      margin-top: 10px;
+
+    }
+
+    .bar{
+
+      margin-top: 8px;
+
+      height: 10px;
+
+      border-radius: 999px;
+
+      overflow:hidden;
+
+      background: rgba(0,0,0,.08);
+
+      border: 1px solid var(--border);
+
+    }
+
+    .bar > div{
+
+      height:100%;
+
+      width:0%;
+
+      background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+    }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Step 1 · SIDF Overview</div>
+<!-- appears only after completion -->
+<div id="completePill" class="complete-pill">
+<span class="pill-dot"></span>
+
+        Completed ✓
+</div>
+</header>
+<section class="card">
+<h1>SIDF Overview</h1>
+<div class="note">
+
+        SIDF offers a diverse range of short, medium, and long-term financial solutions, specially designed to meet the needs of the industrial projects. These solutions include working capital financing, supply chain financing, project financing, acquisition financing, and multipurpose financing. They aim to support the growth of your project, enhance operational efficiency, and ensure business continuity with flexibility and effectiveness.
+</div>
+<div class="content-wrap" style="margin-top:14px;">
+<!-- VIDEO (same width as image below) -->
+<div class="media-card">
+<video
+
+            id="overviewVideo"
+
+            width="100%"
+
+            controls
+
+            controlsList="nodownload noplaybackrate"
+
+            disablePictureInPicture
+
+            playsinline
+
+            preload="metadata"
+
+            style="background:#000;"
+
+            oncontextmenu="return false;"
+>
+<source src="sidf-overview-video.mp4" type="video/mp4">
+
+            Your browser does not support the video tag.
+</video>
+</div>
+<!-- completion tracker -->
+<div style="margin-top:10px;">
+<div class="progress-row">
+<div class="muted" style="font-weight:800;">Video completion</div>
+<div id="progressText" class="muted" style="font-weight:900;">0%</div>
+</div>
+<div class="bar">
+<div id="progressBar"></div>
+</div>
+<p id="watchNote" class="muted" style="margin-top:8px;">
+
+            Please watch the full video to proceed. Skipping ahead is disabled.
+</p>
+</div>
+<!-- IMAGE (same width as video above) -->
+<div class="img-card">
+<!-- CHANGE THIS filename if yours is different -->
+<img src="overview-image.png" alt="SIDF overview" style="width:100%; display:block;">
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="index.html">Back</a>
+<!-- locked until video ends -->
+<a id="continueBtn" class="btn primary" href="#"
+
+           style="pointer-events:none; opacity:0.5;">
+
+          Continue
+</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>SIDF Overview</span>
+</footer>
+</main>
+<script>
+
+    const video = document.getElementById("overviewVideo");
+
+    const btn = document.getElementById("continueBtn");
+
+    const bar = document.getElementById("progressBar");
+
+    const txt = document.getElementById("progressText");
+
+    const note = document.getElementById("watchNote");
+
+    const pill = document.getElementById("completePill");
+
+    let maxWatched = 0;
+
+    function updateProgress() {
+
+      const dur = video.duration || 0;
+
+      if (!dur) return;
+
+      if (!video.paused && video.currentTime > maxWatched) {
+
+        maxWatched = video.currentTime;
+
+      }
+
+      const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+
+      bar.style.width = pct + "%";
+
+      txt.textContent = pct + "%";
+
+    }
+
+    // prevent seeking forward
+
+    video.addEventListener("seeking", () => {
+
+      if (video.currentTime > maxWatched + 0.25) {
+
+        video.currentTime = maxWatched;
+
+      }
+
+    });
+
+    video.addEventListener("timeupdate", updateProgress);
+
+    video.addEventListener("play", updateProgress);
+
+    video.addEventListener("loadedmetadata", updateProgress);
+
+    // block common keyboard skipping
+
+    video.addEventListener("keydown", (e) => {
+
+      const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+
+      if (keys.includes(e.key)) e.preventDefault();
+
+    });
+
+    video.addEventListener("ended", () => {
+
+      updateProgress();
+
+      bar.style.width = "100%";
+
+      txt.textContent = "100%";
+
+      // show completion badge
+
+      pill.style.display = "inline-flex";
+
+      // unlock continue
+
+      btn.style.pointerEvents = "auto";
+
+      btn.style.opacity = "1";
+
+      btn.href = "structure.html";  // <-- change if your next page name differs
+
+      note.textContent = "Completed ✅ You can continue.";
+
+    });
+</script>
+</body>
+</html>
+ 
+<script>
+
+  const video = document.getElementById("overviewVideo");
+
+  const btn = document.getElementById("continueBtn");
+
+  const bar = document.getElementById("progressBar");
+
+  const txt = document.getElementById("progressText");
+
+  const note = document.getElementById("watchNote");
+
+  const pill = document.getElementById("completePill");
+
+  const STORAGE_KEY = "sidf_overview_completed";
+
+  let maxWatched = 0;
+
+  // ---- Restore completion state if already completed ----
+
+  if (localStorage.getItem(STORAGE_KEY) === "true") {
+
+    bar.style.width = "100%";
+
+    txt.textContent = "100%";
+
+    pill.style.display = "inline-flex";
+
+    btn.style.pointerEvents = "auto";
+
+    btn.style.opacity = "1";
+
+    btn.href = "structure.html"; // adjust if needed
+
+    note.textContent = "Completed ✓";
+
+  }
+
+  function updateProgress() {
+
+    const dur = video.duration || 0;
+
+    if (!dur) return;
+
+    if (!video.paused && video.currentTime > maxWatched) {
+
+      maxWatched = video.currentTime;
+
+    }
+
+    const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+
+    bar.style.width = pct + "%";
+
+    txt.textContent = pct + "%";
+
+  }
+
+  // Prevent skipping forward unless already completed
+
+  video.addEventListener("seeking", () => {
+
+    if (
+
+      localStorage.getItem(STORAGE_KEY) !== "true" &&
+
+      video.currentTime > maxWatched + 0.25
+
+    ) {
+
+      video.currentTime = maxWatched;
+
+    }
+
+  });
+
+  video.addEventListener("timeupdate", updateProgress);
+
+  video.addEventListener("play", updateProgress);
+
+  video.addEventListener("loadedmetadata", updateProgress);
+
+  // Block keyboard skipping
+
+  video.addEventListener("keydown", (e) => {
+
+    const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+
+    if (keys.includes(e.key)) e.preventDefault();
+
+  });
+
+  // ---- On completion ----
+
+  video.addEventListener("ended", () => {
+
+    bar.style.width = "100%";
+
+    txt.textContent = "100%";
+
+    pill.style.display = "inline-flex";
+
+    note.textContent = "Completed ✓";
+
+    btn.style.pointerEvents = "auto";
+
+    btn.style.opacity = "1";
+
+    btn.href = "structure.html"; // adjust if needed
+
+    // Persist completion
+
+    localStorage.setItem(STORAGE_KEY, "true");
+
+  });
+</script>
+ 
+<!-- Progress Timeline -->
+<nav class="stepper" id="stepper"></nav>
+ 
+/* ===== Progress Timeline (Stepper) ===== */
+
+.stepper{
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 10px 12px;
+
+  border: 1px solid rgba(11,107,79,.14);
+
+  background: rgba(230,244,239,.30);
+
+  border-radius: 16px;
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.step{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  min-width: 170px;
+
+  padding: 8px 10px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(0,0,0,.06);
+
+  background:#fff;
+
+  color:#1c2430;
+
+  text-decoration:none;
+
+  flex: 0 0 auto;
+
+}
+
+.step:hover{
+
+  border-color: rgba(11,107,79,.25);
+
+}
+
+.step-dot{
+
+  width: 26px;
+
+  height: 26px;
+
+  border-radius: 999px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight: 950;
+
+  font-size: 12px;
+
+  border: 1px solid rgba(0,0,0,.10);
+
+  background:#f3f4f6;
+
+  color:#334155;
+
+}
+
+.step-title{
+
+  font-weight: 900;
+
+  font-size: 12px;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+
+}
+
+.step-sub{
+
+  font-size: 11px;
+
+  color: #6b7280;
+
+  margin-top: 2px;
+
+  white-space: nowrap;
+
+}
+
+/* Completed */
+
+.step.completed{
+
+  border-color: rgba(11,107,79,.25);
+
+}
+
+.step.completed .step-dot{
+
+  background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+
+  color:#fff;
+
+  border-color: rgba(11,107,79,.25);
+
+}
+
+/* Current */
+
+.step.current{
+
+  border-color: rgba(11,107,79,.45);
+
+  box-shadow: 0 0 0 2px rgba(11,107,79,.10) inset;
+
+}
+
+.step.current .step-dot{
+
+  background: rgba(11,107,79,.12);
+
+  border-color: rgba(11,107,79,.30);
+
+  color:#0b3e30;
+
+}
+/* ===== LOGIN STYLES (Welcome Page) ===== */
+.login-box {
+ display: flex;
+ gap: 12px;
+ align-items: center;
+ margin: 12px 0;
+}
+.login-modal {
+ display: none;
+ position: fixed;
+ inset: 0;
+ background: rgba(0,0,0,.5);
+ justify-content: center;
+ align-items: center;
+ z-index: 999;
+}
+.login-card {
+ background: white;
+ padding: 20px;
+ border-radius: 16px;
+ width: 320px;
+ box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+.login-card input {
+ width: 100%;
+ padding: 10px;
+ margin-top: 8px;
+ border-radius: 8px;
+ border: 1px solid #ccc;
+}
+.login-actions {
+ display: flex;
+ gap: 10px;
+ margin-top: 12px;
+}
+.error {
+ color: #b91c1c;
+ font-size: 12px;
+ margin-top: 6px;
+}
+ 
+ 

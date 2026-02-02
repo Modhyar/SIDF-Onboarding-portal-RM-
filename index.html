@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SIDF RM Credit | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<script>window.CURRENT_PAGE_ID = "Welcome";</script>
+<script>
+ // 1) Update these filenames to match your project
+ const STEPS = [
+   { id:"welcome",   title:"Welcome",            sub:"Mandatory video",   href:"index.html",     key:"sidf_done_welcome" },
+   { id:"overview",  title:"SIDF Overview",      sub:"Intro + video",     href:"overview.html",  key:"sidf_done_overview" },
+   { id:"structure", title:"SIDF Structure",     sub:"Org charts",        href:"structure.html", key:"sidf_done_structure" },
+   { id:"role",      title:"RM Role",            sub:"Timeline",          href:"role.html",      key:"sidf_done_role" },
+   { id:"lifecycle", title:"Project Lifecycle",  sub:"Process",           href:"lifecycle.html", key:"sidf_done_lifecycle" },
+   { id:"financing", title:"Types of Financing", sub:"WC / PF",           href:"financing.html", key:"sidf_done_financing" },
+   { id:"modeling",  title:"Financial Modeling", sub:"Requirements",      href:"modeling.html",  key:"sidf_done_modeling" },
+   { id:"final",     title:"Final Tips",         sub:"Wrap up",           href:"final.html",     key:"sidf_done_final" }
+ ];
+ // 2) Set CURRENT_PAGE_ID on each page (example below)
+ //    You MUST change this value per page.
+ const CURRENT_PAGE_ID = window.CURRENT_PAGE_ID || ""; // set below
+ function isDone(key){
+   return localStorage.getItem(key) === "true";
+ }
+ function setDone(key){
+   localStorage.setItem(key, "true");
+ }
+ function renderStepper(){
+   const el = document.getElementById("stepper");
+   if(!el) return;
+   el.innerHTML = "";
+   STEPS.forEach((s, idx) => {
+     const a = document.createElement("a");
+     a.className = "step";
+     a.href = s.href;
+     const done = isDone(s.key);
+     if(done) a.classList.add("completed");
+     if(s.id === CURRENT_PAGE_ID) a.classList.add("current");
+     a.innerHTML = `
+<div class="step-dot">${done ? "✓" : (idx+1)}</div>
+<div>
+<div class="step-title">${s.title}</div>
+<div class="step-sub">${s.sub}</div>
+</div>
+     `;
+     el.appendChild(a);
+   });
+ }
+ // Helper for pages with mandatory video:
+ // Call markStepComplete("sidf_done_overview") when video ends.
+ window.markStepComplete = function(key){
+   setDone(key);
+   renderStepper();
+ };
+ renderStepper();
+</script>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Onboarding Portal</div>
+</header>
+<section class="card hero">
+<div class="hero-left">
+<h1>Welcome 👋</h1>
+<p class="muted">
+         Welcome to the Saudi Industrial Development Fund. This portal helps Co-op students and new RM (Credit) team members to get started.
+</p>
+<!-- LOGIN BAR -->
+<div class="login-box">
+<span id="loginStatus" class="muted">Please log in to save your progress.</span>
+<button id="openLogin" class="btn primary">Log in / Create account</button>
+<button id="logoutBtn" class="btn ghost" style="display:none;">Log out</button>
+</div>
+<div style="max-width:820px; margin:0 auto;">
+<video id="welcomeVideo" width="100%" controls
+ controlsList="nodownload noplaybackrate"
+ disablePictureInPicture
+ playsinline
+ preload="metadata"
+ style="background:#000;"
+>
+<source src="welcome-video.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
+</div>
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:800;">Completion</div>
+<div id="progressText" class="muted" style="font-weight:900;">0%</div>
+</div>
+<div style="margin-top:8px; height:10px; border-radius:999px; overflow:hidden; background:rgba(0,0,0,.08); border:1px solid var(--border);">
+<div id="progressBar" style="height:100%; width:0%; background:linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));"></div>
+</div>
+<p id="watchNote" class="muted" style="margin-top:8px;">
+   Please watch the full introduction video to proceed. Skipping ahead is disabled.
+</p>
+</div>
+<div class="callout">
+<div class="callout-title">What you’ll find here</div>
+<ul>
+<li>Overview of SIDF</li>
+<li>SIDF structure</li>
+<li>Role of Credit Relationship Management</li>
+<li>SIDF project lifecycle</li>
+<li>Types of SIDF financing</li>
+<li>Financial Modeling</li>
+<li>Final Tips</li>
+</ul>
+</div>
+<div class="actions">
+<a class="btn primary" href="overview.html">Enter Portal</a>
+</div>
+<p class="tiny muted">
+         Tip: You can revisit this portal anytime during your training.
+</p>
+</div>
+<div class="hero-right">
+<div class="panel">
+<div class="panel-title">RM Credit — Starter View</div>
+<div class="statgrid">
+<div class="stat">
+<div class="stat-label">Audience</div>
+<div class="stat-value">Co-op / New Joiners</div>
+</div>
+<div class="stat">
+<div class="stat-label">Goal</div>
+<div class="stat-value">Fast onboarding</div>
+</div>
+<div class="stat">
+<div class="stat-label">Track</div>
+<div class="stat-value">Credit</div>
+</div>
+<div class="stat">
+<div class="stat-label">Format</div>
+<div class="stat-value">Step-by-step</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="kv">
+<div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid var(--border); background:#fff;">
+<img src="welcome-photo.png" alt="SIDF onboarding" style="width:100%; display:block;">
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+   document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+<script>
+ const video = document.getElementById("welcomeVideo");
+ const btn = document.getElementById("continueBtn");
+ const bar = document.getElementById("progressBar");
+ const txt = document.getElementById("progressText");
+ const note = document.getElementById("watchNote");
+ let maxWatched = 0;      // furthest watched time (seconds)
+ let allowSeekBack = true;
+ function updateProgress() {
+   const dur = video.duration || 0;
+   if (!dur) return;
+   // Track furthest watched point (only when playing / moving forward normally)
+   if (!video.paused && video.currentTime > maxWatched) {
+     maxWatched = video.currentTime;
+   }
+   const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+   bar.style.width = pct + "%";
+   txt.textContent = pct + "%";
+ }
+ // Prevent seeking forward beyond maxWatched
+ video.addEventListener("seeking", () => {
+   // Allow seeking backward (rewind) but block forward skipping
+   if (video.currentTime > maxWatched + 0.25) {
+     allowSeekBack = false;
+     video.currentTime = maxWatched;
+   }
+ });
+ // Some browsers fire seeked after seeking; keep it tight
+ video.addEventListener("seeked", () => {
+   if (!allowSeekBack) {
+     allowSeekBack = true;
+   }
+ });
+ // Update progress frequently
+ video.addEventListener("timeupdate", updateProgress);
+ video.addEventListener("play", updateProgress);
+ video.addEventListener("loadedmetadata", updateProgress);
+ // Block keyboard skipping when video is focused (arrows, end/home, etc.)
+ video.addEventListener("keydown", (e) => {
+   const keys = ["ArrowRight", "ArrowLeft", "End", "Home", "l", "j"];
+   if (keys.includes(e.key)) e.preventDefault();
+ });
+ // Unlock continue only when video ends
+ video.addEventListener("ended", () => {
+markStepComplete("sidf_done_welcome");
+   updateProgress();
+   bar.style.width = "100%";
+   txt.textContent = "100%";
+   btn.style.pointerEvents = "auto";
+   btn.style.opacity = "1";
+   btn.href = "overview.html"; // next page
+   note.textContent = "Completed ✅ You can continue.";
+ });
+</script>
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+<div class="login-card">
+<h3>Portal Access</h3>
+<input id="loginUser" placeholder="Email or ID" />
+<input id="loginPin" type="password" placeholder="PIN (4–8 digits)" />
+<p id="loginError" class="error"></p>
+<div class="login-actions">
+<button id="loginSubmit" class="btn primary">Log in</button>
+<button id="createSubmit" class="btn ghost">Create account</button>
+</div>
+</div>
+</div>
+<script>
+
+const USERS_KEY = "sidf_users";
+
+const CURRENT_KEY = "sidf_current_user";
+
+const modal = document.getElementById("loginModal");
+
+const openBtn = document.getElementById("openLogin");
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+const statusText = document.getElementById("loginStatus");
+
+const userInput = document.getElementById("loginUser");
+
+const pinInput = document.getElementById("loginPin");
+
+const errorText = document.getElementById("loginError");
+
+function loadUsers() {
+
+  return JSON.parse(localStorage.getItem(USERS_KEY) || "{}");
+
+}
+
+function saveUsers(u) {
+
+  localStorage.setItem(USERS_KEY, JSON.stringify(u));
+
+}
+
+function setCurrent(user) {
+
+  localStorage.setItem(CURRENT_KEY, user);
+
+}
+
+function getCurrent() {
+
+  return localStorage.getItem(CURRENT_KEY);
+
+}
+
+function clearCurrent() {
+
+  localStorage.removeItem(CURRENT_KEY);
+
+}
+
+function refreshLoginUI() {
+
+  const u = getCurrent();
+
+  if (u) {
+
+    statusText.textContent = "Logged in as: " + u;
+
+    openBtn.style.display = "none";
+
+    logoutBtn.style.display = "inline-block";
+
+  } else {
+
+    statusText.textContent = "Please log in to save your progress.";
+
+    openBtn.style.display = "inline-block";
+
+    logoutBtn.style.display = "none";
+
+  }
+
+}
+
+openBtn.onclick = () => modal.style.display = "flex";
+
+logoutBtn.onclick = () => { clearCurrent(); refreshLoginUI(); };
+
+document.getElementById("loginSubmit").onclick = () => {
+
+  const users = loadUsers();
+
+  const u = userInput.value.trim();
+
+  const p = pinInput.value.trim();
+
+  if (!users[u] || users[u] !== p) {
+
+    errorText.textContent = "Invalid login.";
+
+    return;
+
+  }
+
+  setCurrent(u);
+
+  modal.style.display = "none";
+
+  refreshLoginUI();
+
+};
+
+document.getElementById("createSubmit").onclick = () => {
+
+  const users = loadUsers();
+
+  const u = userInput.value.trim();
+
+  const p = pinInput.value.trim();
+
+  if (users[u]) {
+
+    errorText.textContent = "Account already exists.";
+
+    return;
+
+  }
+
+  users[u] = p;
+
+  saveUsers(users);
+
+  setCurrent(u);
+
+  modal.style.display = "none";
+
+  refreshLoginUI();
+
+};
+
+window.onclick = (e) => {
+
+  if (e.target === modal) modal.style.display = "none";
+
+};
+
+refreshLoginUI();
+</script>
+ 
+</body>
+</html>
