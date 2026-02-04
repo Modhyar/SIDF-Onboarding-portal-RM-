@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Access Setup | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+<script>
+   window.CURRENT_PAGE_ID = "access";
+</script>
+<style>
+   .two-col { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+   @media (max-width: 900px){ .two-col{ grid-template-columns: 1fr; } }
+   .step-card{
+     border: 1px solid var(--border);
+     border-radius: 18px;
+     background: rgba(255,255,255,.85);
+     padding: 16px;
+   }
+   .step-title{
+     display:flex; align-items:center; justify-content:space-between;
+     gap: 10px; flex-wrap:wrap;
+     margin-bottom: 10px;
+   }
+   /* Checkmark-only badge */
+   .badge{
+     width: 34px;
+     height: 34px;
+     border-radius: 999px;
+     display:inline-flex;
+     align-items:center;
+     justify-content:center;
+     font-size: 18px;
+     font-weight: 900;
+     color:#0b3e30;
+     background: rgba(230,244,239,.85);
+     border: 1px solid rgba(11,107,79,.25);
+   }
+   .video-box{
+     border-radius: 16px;
+     overflow:hidden;
+     border: 1px solid var(--border);
+     background:#000;
+   }
+   .mini{ font-size: 12px; opacity: .85; }
+   .progressWrap{
+     margin-top: 10px;
+     border:1px solid var(--border);
+     background: rgba(0,0,0,.06);
+     height: 10px;
+     border-radius: 999px;
+     overflow:hidden;
+   }
+   .progressFill{
+     height: 100%;
+     width: 0%;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+   }
+   /* Not bold */
+   .lockNote{
+     margin-top: 10px;
+     font-weight: 400;
+   }
+   /* Bottom bar: Back left, Continue right */
+   .actions{
+     margin-top:18px;
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap:12px;
+   }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Access Setup</div>
+</header>
+<section class="card">
+<h1 style="margin-bottom:6px;">How to Access Tamkeen & Shared Drive</h1>
+<p class="muted" style="margin-top:0;">
+     Complete both videos below. You won’t be able to continue until each video is watched.
+
+</p>
+<div class="two-col" style="margin-top:14px;">
+<!-- STEP 1 -->
+<div class="step-card">
+<div class="step-title">
+<div>
+<div style="font-weight:950;">Step 1: Shared Drive Access</div>
+<div class="muted mini">Request Shared drive access from SRS</div>
+</div>
+<div id="done1" class="badge" style="display:none;">✓</div>
+</div>
+<p class="muted" style="margin-top:0;">
+         Request Shared Drive access from <b>SRS</b> (Service Request System). The following video shows what to do:
+</p>
+<div class="video-box">
+<video id="vid1" width="100%" controls
+           controlsList="nodownload noplaybackrate"
+           disablePictureInPicture playsinline preload="metadata"
+           style="background:#000;" oncontextmenu="return false;">
+<source src="shared-drive-srs.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+</video>
+</div>
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; gap:10px;">
+<div class="muted" style="font-weight:900;">Video 1 completion</div>
+<div id="pct1" class="muted" style="font-weight:950;">0%</div>
+</div>
+<div class="progressWrap">
+<div id="bar1" class="progressFill"></div>
+</div>
+</div>
+</div>
+<!-- STEP 2 -->
+<div class="step-card">
+<div class="step-title">
+<div>
+<div style="font-weight:950;">Step 2: Tamkeen Access</div>
+<div class="muted mini">Platform used to keep projects & track progress</div>
+</div>
+<div id="done2" class="badge" style="display:none;">✓</div>
+</div>
+<p class="muted" style="margin-top:0;">
+<b>Tamkeen</b> is the platform SIDF uses to safe-keep all projects and show the progress of each.
+         Watch the video below:
+</p>
+<div class="video-box">
+<video id="vid2" width="100%" controls
+           controlsList="nodownload noplaybackrate"
+           disablePictureInPicture playsinline preload="metadata"
+           style="background:#000;" oncontextmenu="return false;">
+<source src="tamkeen-access.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+</video>
+</div>
+<div style="margin-top:10px;">
+<div style="display:flex; justify-content:space-between; gap:10px;">
+<div class="muted" style="font-weight:900;">Video 2 completion</div>
+<div id="pct2" class="muted" style="font-weight:950;">0%</div>
+</div>
+<div class="progressWrap">
+<div id="bar2" class="progressFill"></div>
+</div>
+</div>
+</div>
+</div>
+<p id="lockNote" class="muted lockNote">
+     🔒 Please complete both videos to unlock Continue.
+</p>
+<div class="actions">
+<a class="btn ghost" href="structure.html">Back</a>
+<a id="continueBtn" class="btn primary" href="#"
+        style="pointer-events:none; opacity:.55;">Continue →</a>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ // Per-user saving if login exists; otherwise works as guest
+ const CURRENT_KEY = "sidf_user_current";
+ const user = localStorage.getItem(CURRENT_KEY) || "guest";
+ const KEY_V1_DONE = `sidf_access_v1_done:${user}`;
+ const KEY_V2_DONE = `sidf_access_v2_done:${user}`;
+ const vid1 = document.getElementById("vid1");
+ const vid2 = document.getElementById("vid2");
+ const bar1 = document.getElementById("bar1");
+ const bar2 = document.getElementById("bar2");
+ const pct1 = document.getElementById("pct1");
+ const pct2 = document.getElementById("pct2");
+ const done1 = document.getElementById("done1");
+ const done2 = document.getElementById("done2");
+ const btn   = document.getElementById("continueBtn");
+ const note  = document.getElementById("lockNote");
+ // Read done flags from storage
+ function isV1Done(){ return localStorage.getItem(KEY_V1_DONE) === "true"; }
+ function isV2Done(){ return localStorage.getItem(KEY_V2_DONE) === "true"; }
+ function refreshBadges(){
+   done1.style.display = isV1Done() ? "inline-flex" : "none";
+   done2.style.display = isV2Done() ? "inline-flex" : "none";
+ }
+ function refreshUnlock(){
+   refreshBadges();
+   // ✅ THIS is the text fix
+   if(isV1Done() && isV2Done()){
+     btn.style.pointerEvents = "auto";
+     btn.style.opacity = "1";
+     btn.href = "role.html"; // RM page (change if your RM file name differs)
+     note.textContent = "Completed ✓ You can continue.";
+   } else {
+     btn.style.pointerEvents = "none";
+     btn.style.opacity = ".55";
+     btn.href = "#";
+     note.textContent = "🔒 Please complete both videos to unlock Continue.";
+   }
+ }
+ // Gate video (no forward seeking)
+ function gateVideo(videoEl, barEl, pctEl, doneKey){
+   let maxWatched = 0;
+   function updateUI(){
+     const dur = videoEl.duration || 0;
+     if(!dur) return;
+     // If already done, keep 100%
+     if(localStorage.getItem(doneKey) === "true"){
+       barEl.style.width = "100%";
+       pctEl.textContent = "100%";
+       return;
+     }
+     if(!videoEl.paused && videoEl.currentTime > maxWatched){
+       maxWatched = videoEl.currentTime;
+     }
+     const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+     barEl.style.width = pct + "%";
+     pctEl.textContent = pct + "%";
+   }
+   videoEl.addEventListener("seeking", ()=>{
+     if(localStorage.getItem(doneKey) === "true") return;
+     if(videoEl.currentTime > maxWatched + 0.25){
+       videoEl.currentTime = maxWatched;
+     }
+   });
+   videoEl.addEventListener("timeupdate", updateUI);
+   videoEl.addEventListener("play", updateUI);
+   videoEl.addEventListener("loadedmetadata", updateUI);
+   videoEl.addEventListener("ended", ()=>{
+     localStorage.setItem(doneKey, "true");
+     barEl.style.width = "100%";
+     pctEl.textContent = "100%";
+     // ✅ Critical: update text immediately when a video finishes
+     refreshUnlock();
+   });
+ }
+ // Restore UI if already completed
+ if(isV1Done()){ bar1.style.width="100%"; pct1.textContent="100%"; done1.style.display="inline-flex"; }
+ if(isV2Done()){ bar2.style.width="100%"; pct2.textContent="100%"; done2.style.display="inline-flex"; }
+ gateVideo(vid1, bar1, pct1, KEY_V1_DONE);
+ gateVideo(vid2, bar2, pct2, KEY_V2_DONE);
+ // Initial state
+ refreshUnlock();
+</script>
+</body>
+</html>
