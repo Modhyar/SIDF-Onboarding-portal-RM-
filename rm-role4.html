@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RM Role | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+<script>window.CURRENT_PAGE_ID = "role";</script>
+<style>
+ .deck{
+   margin-top: 14px;
+   border: 1px solid var(--border);
+   border-radius: 18px;
+   background: rgba(255,255,255,.90);
+   overflow: hidden;
+ }
+ .deck-top{
+   display:flex;
+   justify-content:space-between;
+   align-items:center;
+   gap:12px;
+   padding: 12px 14px;
+   border-bottom: 1px solid var(--border);
+   background: rgba(0,0,0,.02);
+   flex-wrap: wrap;
+ }
+ .counter{
+   font-weight: 900;
+ }
+ .hint{
+   font-size: 12px;
+   opacity: .8;
+ }
+ .slide-stage{
+   position: relative;
+   background: #000;
+   touch-action: pan-y; /* allow vertical scroll but we handle horizontal swipe */
+ }
+ .slide-img{
+   width: 100%;
+   height: auto;
+   display: block;
+   background: #000;
+   user-select: none;
+   -webkit-user-drag: none;
+ }
+ .navBtn{
+   position:absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   border: 1px solid rgba(255,255,255,.25);
+   background: rgba(0,0,0,.45);
+   color: #fff;
+   font-weight: 900;
+   width: 44px;
+   height: 44px;
+   border-radius: 999px;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   cursor:pointer;
+   z-index: 2;
+   backdrop-filter: blur(6px);
+ }
+ .navBtn:disabled{
+   opacity: .35;
+   cursor: not-allowed;
+ }
+ .navPrev{ left: 12px; }
+ .navNext{ right: 12px; }
+ .progressWrap{
+   padding: 12px 14px;
+   border-top: 1px solid var(--border);
+   background: rgba(0,0,0,.02);
+ }
+ .barTrack{
+   margin-top: 8px;
+   height: 10px;
+   border-radius: 999px;
+   overflow:hidden;
+   background: rgba(0,0,0,.08);
+   border: 1px solid var(--border);
+ }
+ .barFill{
+   height: 100%;
+   width: 0%;
+   background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+   transition: width .2s ease;
+ }
+ .lockNote{
+   margin-top: 10px;
+   font-weight: 400; /* not bold */
+ }
+ .actions{
+   margin-top: 18px;
+   display:flex;
+   justify-content:space-between;
+   align-items:center;
+   gap:12px;
+ }
+ .checkPill{
+   width: 34px;
+   height: 34px;
+   border-radius: 999px;
+   display:none;
+   align-items:center;
+   justify-content:center;
+   font-size: 18px;
+   font-weight: 900;
+   color:#0b3e30;
+   background: rgba(230,244,239,.85);
+   border: 1px solid rgba(11,107,79,.25);
+ }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">RM Role</div>
+</header>
+<section class="card">
+<div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap;">
+<div>
+<h1 style="margin:0 0 6px;">Role of Credit Relationship Management</h1>
+<p class="muted" style="margin:0;">
+         Swipe through the slides. Continue unlocks after you view all 8 slides.
+</p>
+</div>
+<div id="doneBadge" class="checkPill">✓</div>
+</div>
+<div class="deck">
+<div class="deck-top">
+<div class="counter">
+         Slide <span id="cur">1</span> / <span id="total">8</span>
+</div>
+<div class="hint muted">Tip: swipe left/right or use the arrows</div>
+</div>
+<div class="slide-stage" id="stage">
+<button id="prev" class="navBtn navPrev" aria-label="Previous slide">‹</button>
+<button id="next" class="navBtn navNext" aria-label="Next slide">›</button>
+<img id="slide" class="slide-img" src="" alt="RM Role slide">
+</div>
+<div class="progressWrap">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:900;">Completion</div>
+<div id="pct" class="muted" style="font-weight:950;">0%</div>
+</div>
+<div class="barTrack">
+<div id="bar" class="barFill"></div>
+</div>
+<p id="lockNote" class="muted lockNote">
+         🔒 Please view all slides to unlock Continue.
+</p>
+<div class="actions">
+<!-- change if your previous page differs -->
+<a class="btn ghost" href="access.html">Back</a>
+<a id="continueBtn" class="btn primary" href="#"
+            style="pointer-events:none; opacity:.55;">
+           Continue →
+</a>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ // ✅ Update these filenames if your images are .png, etc.
+ const SLIDES = [
+   "role-slide-1.jpg",
+   "role-slide-2.jpg",
+   "role-slide-3.jpg",
+   "role-slide-4.jpg",
+   "role-slide-5.jpg",
+   "role-slide-6.jpg",
+   "role-slide-7.jpg",
+   "role-slide-8.jpg"
+ ];
+ // Per-user saving if login exists; otherwise guest
+ const user = localStorage.getItem("sidf_user_current") || "guest";
+ const KEY_DONE = `sidf_done_role:${user}`;
+ const KEY_MAX  = `sidf_role_max_slide:${user}`; // furthest slide index reached (0-based)
+ const img = document.getElementById("slide");
+ const stage = document.getElementById("stage");
+ const prevBtn = document.getElementById("prev");
+ const nextBtn = document.getElementById("next");
+ const curEl = document.getElementById("cur");
+ const totalEl = document.getElementById("total");
+ const pctEl = document.getElementById("pct");
+ const barEl = document.getElementById("bar");
+ const noteEl = document.getElementById("lockNote");
+ const continueBtn = document.getElementById("continueBtn");
+ const doneBadge = document.getElementById("doneBadge");
+ totalEl.textContent = SLIDES.length;
+ let index = 0; // current slide index
+ let maxIndex = Number(localStorage.getItem(KEY_MAX) || 0); // furthest reached
+ function setCompletedUI(){
+   doneBadge.style.display = "inline-flex";
+   noteEl.textContent = "Completed ✓ You can continue.";
+   continueBtn.style.pointerEvents = "auto";
+   continueBtn.style.opacity = "1";
+   continueBtn.href = "lifecycle.html"; // ✅ change if next page differs
+   barEl.style.width = "100%";
+   pctEl.textContent = "100%";
+ }
+ function refreshProgress(){
+   const pct = Math.min(100, Math.floor(((maxIndex + 1) / SLIDES.length) * 100));
+   barEl.style.width = pct + "%";
+   pctEl.textContent = pct + "%";
+ }
+ function refreshButtons(){
+   prevBtn.disabled = (index === 0);
+   nextBtn.disabled = (index === SLIDES.length - 1);
+ }
+ function render(){
+   img.src = SLIDES[index];
+   curEl.textContent = String(index + 1);
+   refreshButtons();
+   // Track furthest slide reached
+   if(index > maxIndex){
+     maxIndex = index;
+     localStorage.setItem(KEY_MAX, String(maxIndex));
+   }
+   refreshProgress();
+   // Unlock only when last slide has been reached at least once
+   const done = (maxIndex >= SLIDES.length - 1) || localStorage.getItem(KEY_DONE) === "true";
+   if(done){
+     localStorage.setItem(KEY_DONE, "true");
+     setCompletedUI();
+   } else {
+     noteEl.textContent = "🔒 Please view all slides to unlock Continue.";
+     continueBtn.style.pointerEvents = "none";
+     continueBtn.style.opacity = ".55";
+     continueBtn.href = "#";
+     doneBadge.style.display = "none";
+   }
+ }
+ // Navigation
+ prevBtn.addEventListener("click", () => {
+   if(index > 0){ index--; render(); }
+ });
+ nextBtn.addEventListener("click", () => {
+   if(index < SLIDES.length - 1){ index++; render(); }
+ });
+ // Swipe support
+ let startX = 0;
+ let isDown = false;
+ stage.addEventListener("touchstart", (e) => {
+   startX = e.changedTouches[0].clientX;
+ }, {passive:true});
+ stage.addEventListener("touchend", (e) => {
+   const endX = e.changedTouches[0].clientX;
+   const diff = endX - startX;
+   if(Math.abs(diff) < 40) return;
+   if(diff < 0 && index < SLIDES.length - 1){ index++; render(); }
+   if(diff > 0 && index > 0){ index--; render(); }
+ }, {passive:true});
+ // Optional: mouse drag swipe (desktop)
+ stage.addEventListener("mousedown", (e)=>{ isDown=true; startX=e.clientX; });
+ window.addEventListener("mouseup", (e)=>{
+   if(!isDown) return;
+   isDown=false;
+   const diff = e.clientX - startX;
+   if(Math.abs(diff) < 60) return;
+   if(diff < 0 && index < SLIDES.length - 1){ index++; render(); }
+   if(diff > 0 && index > 0){ index--; render(); }
+ });
+ // Restore completion state on load
+ if(localStorage.getItem(KEY_DONE) === "true"){
+   // Start them at the last slide if already completed (optional)
+   index = SLIDES.length - 1;
+   maxIndex = SLIDES.length - 1;
+   localStorage.setItem(KEY_MAX, String(maxIndex));
+ } else {
+   // Start at first slide; keep maxIndex from storage
+   index = 0;
+ }
+ render();
+</script>
+</body>
+</html>
