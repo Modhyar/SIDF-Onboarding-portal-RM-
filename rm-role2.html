@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RM Role | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+<script>window.CURRENT_PAGE_ID = "role";</script>
+<style>
+   .check-pill{
+     display:inline-flex;
+     align-items:center;
+     justify-content:center;
+     width:34px; height:34px;
+     border-radius:999px;
+     background: rgba(230,244,239,.85);
+     border: 1px solid rgba(11,107,79,.25);
+     color:#0b3e30;
+     font-weight: 950;
+     font-size: 18px;
+   }
+   .video-wrap{
+     max-width: 920px;
+     margin: 14px auto 0;
+     border-radius: 16px;
+     overflow: hidden;
+     border: 1px solid var(--border);
+     background:#000;
+   }
+   .progressWrap{
+     margin-top: 8px;
+     height: 10px;
+     border-radius: 999px;
+     overflow: hidden;
+     background: rgba(0,0,0,.08);
+     border:1px solid var(--border);
+   }
+   .progressFill{
+     height: 100%;
+     width: 0%;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+   }
+   .actionsRow{
+     margin-top: 18px;
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap: 12px;
+   }
+   .hintRow{
+     margin-top: 10px;
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap: 12px;
+     flex-wrap: wrap;
+   }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">RM Role</div>
+</header>
+<section class="card">
+<div class="hintRow">
+<div>
+<h1 style="margin:0 0 6px;">Role of Credit Relationship Management</h1>
+<p class="muted" style="margin:0;">
+         Watch the video to learn the end-to-end role of RM (Credit). You must complete it to continue.
+</p>
+</div>
+<div id="roleDoneBadge" class="check-pill" style="display:none;">✓</div>
+</div>
+<!-- VIDEO -->
+<div class="video-wrap">
+<video id="rmVideo" width="100%" controls
+       controlsList="nodownload noplaybackrate"
+       disablePictureInPicture
+       playsinline
+       preload="metadata"
+       style="background:#000;"
+       oncontextmenu="return false;"
+>
+<!-- ✅ Upload this video to your repo root -->
+<source src="rm-role-video.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+</video>
+</div>
+<!-- PROGRESS -->
+<div style="margin-top:12px;">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+<div class="muted" style="font-weight:900;">Completion</div>
+<div id="rmProgressText" class="muted" style="font-weight:950;">0%</div>
+</div>
+<div class="progressWrap">
+<div id="rmProgressBar" class="progressFill"></div>
+</div>
+<p id="rmNote" class="muted" style="margin-top:8px;">
+       🔒 Please watch the full video to unlock Continue. Skipping ahead is disabled.
+</p>
+</div>
+<!-- ACTIONS -->
+<div class="actionsRow">
+<!-- Change this if your previous page is different -->
+<a class="btn ghost" href="access.html">Back</a>
+<!-- Locked until video ends -->
+<a id="rmContinue" class="btn primary" href="#"
+        style="pointer-events:none; opacity:.55;">
+       Continue →
+</a>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ const video = document.getElementById("rmVideo");
+ const bar   = document.getElementById("rmProgressBar");
+ const txt   = document.getElementById("rmProgressText");
+ const btn   = document.getElementById("rmContinue");
+ const note  = document.getElementById("rmNote");
+ const badge = document.getElementById("roleDoneBadge");
+ // If you have login system, store per user; otherwise it works as guest
+ const CURRENT_USER_KEY = "sidf_user_current";
+ const user = localStorage.getItem(CURRENT_USER_KEY) || "guest";
+ const KEY_DONE = `sidf_done_role:${user}`;
+ const KEY_MAX  = `sidf_role_max:${user}`;
+ let maxWatched = Number(localStorage.getItem(KEY_MAX) || 0);
+ function setCompletedUI(){
+   bar.style.width = "100%";
+   txt.textContent = "100%";
+   badge.style.display = "inline-flex";
+   note.textContent = "Completed ✓ You can continue.";
+   btn.style.pointerEvents = "auto";
+   btn.style.opacity = "1";
+   // ✅ Change this if your next page file name is different
+   btn.href = "lifecycle.html";
+ }
+ function updateProgress(){
+   const dur = video.duration || 0;
+   if(!dur) return;
+   // If already completed, keep 100%
+   if(localStorage.getItem(KEY_DONE) === "true"){
+     setCompletedUI();
+     return;
+   }
+   // Track furthest watched point (only forward progress)
+   if(!video.paused && video.currentTime > maxWatched){
+     maxWatched = video.currentTime;
+     localStorage.setItem(KEY_MAX, String(maxWatched));
+   }
+   const pct = Math.min(100, Math.floor((maxWatched / dur) * 100));
+   bar.style.width = pct + "%";
+   txt.textContent = pct + "%";
+ }
+ // Prevent seeking forward beyond maxWatched
+ video.addEventListener("seeking", () => {
+   if(localStorage.getItem(KEY_DONE) === "true") return;
+   if(video.currentTime > maxWatched + 0.25){
+     video.currentTime = maxWatched;
+   }
+ });
+ // Reduce keyboard skipping
+ video.addEventListener("keydown", (e) => {
+   const keys = ["ArrowRight", "End", "Home", "l"];
+   if(keys.includes(e.key)) e.preventDefault();
+ });
+ video.addEventListener("timeupdate", updateProgress);
+ video.addEventListener("play", updateProgress);
+ video.addEventListener("loadedmetadata", updateProgress);
+ video.addEventListener("ended", () => {
+   localStorage.setItem(KEY_DONE, "true");
+   localStorage.removeItem(KEY_MAX);
+   setCompletedUI();
+ });
+ // Restore completed state
+ if(localStorage.getItem(KEY_DONE) === "true"){
+   setCompletedUI();
+ } else {
+   updateProgress();
+ }
+</script>
+</body>
+</html>
