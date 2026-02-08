@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Final Tips | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<script>window.CURRENT_PAGE_ID = "final";</script>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Onboarding Portal</div>
+</header>
+<section class="card">
+<h1 style="margin-top:0;">Final Tips</h1>
+<p class="muted" style="margin-top:6px;">
+       Key references you may need during your RM (Credit) onboarding.
+</p>
+<div class="finalGrid" style="margin-top:18px;">
+<!-- Sector Policy -->
+<div class="finalBox">
+<div class="finalBoxHead">
+<div class="finalIcon" aria-hidden="true">
+<!-- Factory / sector icon (SIDF-green via currentColor) -->
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M3 20V10l6 3V10l6 3V8l6 3v9H3Z"
+                     stroke="currentColor" stroke-width="2.2"
+                     stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M3 20h18"
+                     stroke="currentColor" stroke-width="2.2"
+                     stroke-linecap="round"/>
+</svg>
+</div>
+<div>
+<div class="finalTitle">Sector Policy</div>
+<div class="finalSub muted">Reference document</div>
+</div>
+</div>
+<div class="finalBody muted">
+           (A brief on what it is and what its used for) i will fill this later
+</div>
+<div class="finalActions">
+<!-- ✅ CHANGE filename to your actual attachment -->
+<a class="btn primary" href="sector-policy.pdf" download>
+             Download Sector Policy
+</a>
+</div>
+</div>
+<!-- Credit Policy -->
+<div class="finalBox">
+<div class="finalBoxHead">
+<div class="finalIcon" aria-hidden="true">
+<!-- Shield / policy icon -->
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Z"
+                     stroke="currentColor" stroke-width="2.2"
+                     stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M9.2 12.2l2 2 3.6-4"
+                     stroke="currentColor" stroke-width="2.2"
+                     stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div>
+<div class="finalTitle">Credit Policy</div>
+<div class="finalSub muted">Reference document</div>
+</div>
+</div>
+<div class="finalBody muted">
+           (A brief on what it is and what its used for) i will fill this later
+</div>
+<div class="finalActions">
+<!-- ✅ CHANGE filename to your actual attachment -->
+<a class="btn primary" href="credit-policy.pdf" download>
+             Download Credit Policy
+</a>
+</div>
+</div>
+</div>
+<div class="callout" style="margin-top:18px;">
+<div class="callout-title">You’re done ✅</div>
+<p class="muted" style="margin:8px 0 0 0;">
+         You are done with your On-boarding. If you have any questions, don’t hesitate — you can ask your advisor.
+<br><br><b>Thank you!</b>
+</p>
+</div>
+<div class="actions">
+<a class="btn" href="modeling.html">Back</a>
+<a class="btn primary" href="index.html">Home</a>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<script>
+   document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+<!-- Page-specific styling (keeps your site theme untouched) -->
+<style>
+   .finalGrid{
+     display:grid;
+     grid-template-columns: 1fr 1fr;
+     gap:16px;
+   }
+   @media (max-width: 900px){
+     .finalGrid{ grid-template-columns: 1fr; }
+   }
+   .finalBox{
+     background:#fff;
+     border:1px solid var(--border);
+     border-radius:16px;
+     padding:16px;
+     box-shadow: 0 10px 30px rgba(0,0,0,.06);
+   }
+   .finalBoxHead{
+     display:flex;
+     align-items:center;
+     gap:12px;
+   }
+   .finalIcon{
+     width:44px;
+     height:44px;
+     border-radius:14px;
+     background: rgba(30, 152, 86, .10);
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     color: var(--sidf-green);
+     flex:0 0 auto;
+     border: 1px solid rgba(30, 152, 86, .20);
+   }
+   .finalIcon svg{
+     width:22px;
+     height:22px;
+   }
+   .finalTitle{
+     font-weight:900;
+     font-size:18px;
+     line-height:1.1;
+   }
+   .finalSub{ font-size:12px; margin-top:2px; }
+   .finalBody{
+     margin-top:12px;
+     line-height:1.6;
+     background: rgba(0,0,0,.02);
+     border: 1px dashed rgba(0,0,0,.12);
+     border-radius:14px;
+     padding:12px;
+     min-height:72px;
+   }
+   .finalActions{
+     margin-top:12px;
+     display:flex;
+     justify-content:flex-start;
+   }
+</style>
+</body>
+</html>
