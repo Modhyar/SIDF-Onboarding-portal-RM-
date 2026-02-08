@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Types of SIDF Financing | SIDF RM Credit Onboarding</title>
+<link rel="stylesheet" href="styles.css" />
+<script>window.CURRENT_PAGE_ID = "financing";</script>
+<style>
+   .subtext{ margin:0; }
+   .cards{
+     margin-top: 14px;
+     display:grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+     gap: 14px;
+   }
+   @media (max-width: 980px){
+     .cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+   }
+   @media (max-width: 640px){
+     .cards{ grid-template-columns: 1fr; }
+   }
+   /* FULL CARD = CLICKABLE */
+   .typeCard{
+     display:block;
+     text-decoration:none;
+     color: inherit;
+     border: 1px solid var(--border);
+     border-radius: 18px;
+     background: rgba(255,255,255,.95);
+     padding: 18px;
+     transition: transform .08s ease, box-shadow .08s ease, border-color .08s ease;
+     position: relative;
+     cursor: pointer;
+   }
+   .typeCard:hover{
+     transform: translateY(-2px);
+     box-shadow: 0 12px 30px rgba(0,0,0,.10);
+     border-color: rgba(0,0,0,.18);
+   }
+   .typeIcon{
+     font-size: 28px;
+     margin-bottom: 8px;
+     line-height: 1;
+   }
+   .typeTitle{
+     font-weight: 950;
+     font-size: 16px;
+     margin:0 0 6px 0;
+   }
+   .typeDesc{
+     margin: 0 0 12px 0;
+     opacity: .86;
+     line-height: 1.55;
+     font-size: 14px;
+   }
+   /* Green button under paragraph */
+   .greenBtn{
+     display:inline-block;
+     padding: 9px 14px;
+     border-radius: 10px;
+     background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+     color:#fff;
+     font-weight: 950;
+     font-size: 13px;
+     border:none;
+     user-select:none;
+   }
+   /* Check mark for visited */
+   .statusDot{
+     position:absolute;
+     top: 12px;
+     right: 12px;
+     width: 34px;
+     height: 34px;
+     border-radius: 999px;
+     display:none;
+     align-items:center;
+     justify-content:center;
+     font-size: 18px;
+     font-weight: 950;
+     color:#0b3e30;
+     background: rgba(230,244,239,.92);
+     border: 1px solid rgba(11,107,79,.25);
+   }
+   .typeCard.visited .statusDot{
+     display:inline-flex;
+   }
+   .hintRow{
+     margin-top: 12px;
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap: 12px;
+     flex-wrap: wrap;
+   }
+   .lockNote{
+     font-weight: 400;
+     margin: 0;
+   }
+   .actions{
+     margin-top: 18px;
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap: 12px;
+   }
+   /* Modal */
+   .modalBack{
+     position: fixed;
+     inset: 0;
+     background: rgba(0,0,0,.45);
+     display:none;
+     align-items:center;
+     justify-content:center;
+     padding: 18px;
+     z-index: 9999;
+   }
+   .modal{
+     width: min(720px, 96vw);
+     border-radius: 18px;
+     background: #fff;
+     border: 1px solid var(--border);
+     overflow:hidden;
+     box-shadow: 0 20px 60px rgba(0,0,0,.25);
+   }
+   .modalHead{
+     display:flex;
+     justify-content:space-between;
+     align-items:center;
+     gap: 10px;
+     padding: 14px 16px;
+     border-bottom: 1px solid var(--border);
+     background: rgba(0,0,0,.02);
+   }
+   .modalTitle{
+     margin:0;
+     font-weight: 950;
+     font-size: 16px;
+   }
+   .modalBody{
+     padding: 14px 16px;
+     line-height: 1.6;
+   }
+   .modalClose{
+     border: 1px solid var(--border);
+     background: #fff;
+     border-radius: 10px;
+     padding: 8px 12px;
+     cursor:pointer;
+     font-weight: 900;
+   }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Types of Financing</div>
+</header>
+<section class="card">
+<h1 style="margin:0 0 6px;">Types of SIDF Financing</h1>
+<p class="muted subtext">
+     Click each type below to review it. Continue unlocks after you click all types.
+</p>
+<div class="cards" id="cards">
+<!-- Working Capital -->
+<a class="typeCard" data-type="wc" data-mode="link" href="#"
+        data-link="wc.html">
+<div class="statusDot">✓</div>
+<div class="typeIcon">💼</div>
+<p class="typeTitle">Working Capital</p>
+<p class="typeDesc">
+         A working capital loan is a short-term loan to finance a company’s everyday operations
+         (raw materials, maintenance costs, payroll).
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+<!-- Project Finance -->
+<a class="typeCard" data-type="pf" data-mode="link" href="#"
+        data-link="pf.html">
+<div class="statusDot">✓</div>
+<div class="typeIcon">🏗️</div>
+<p class="typeTitle">Project Finance</p>
+<p class="typeDesc">
+         SIDF’s primary medium- to long-term lending used to finance new projects and expansions
+         that increase rated production capacity (land, construction, machinery, equipment).
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+<!-- Multi-purpose -->
+<a class="typeCard" data-type="mp" data-mode="modal" href="#"
+        data-title="Multi-purpose"
+        data-body="A multipurpose loan is a corporate loan used to finance capital expenditure items that do not increase a company’s rated production capacity but aim to improve operational efficiency and overall business performance. This includes replacement of operating equipment, supply-chain and logistics assets, information systems (ERP, HRM, CRM), and facility improvements like renovations, safety upgrades, or equipment modernization. The loan is assessed based on the company’s overall cash flows and balance-sheet strength rather than a specific project’s cash flows.">
+<div class="statusDot">✓</div>
+<div class="typeIcon">⚙️</div>
+<p class="typeTitle">Multi-purpose</p>
+<p class="typeDesc">
+         Corporate loan for capex that improves operational efficiency (ERP, upgrades, logistics, modernization).
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+<!-- Acquisition Financing -->
+<a class="typeCard" data-type="acq" data-mode="modal" href="#"
+        data-title="Acquisition Financing"
+        data-body="An acquisition finance loan supports strategic local or international acquisitions by Saudi companies to enhance capabilities, integration, and value creation within SIDF-supported sectors.">
+<div class="statusDot">✓</div>
+<div class="typeIcon">🤝</div>
+<p class="typeTitle">Acquisition Financing</p>
+<p class="typeDesc">
+         Supports strategic acquisitions by Saudi companies to enhance capabilities, integration, and value creation.
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+<!-- Supply Chain Financing (NEW) -->
+<a class="typeCard" data-type="scf" data-mode="modal" href="#"
+        data-title="Supply Chain Financing"
+        data-body="Supply Chain Financing is short-term financing to facilitate early invoice payments that aims to support working capital needs and improve cash flow.">
+<div class="statusDot">✓</div>
+<div class="typeIcon">🔄</div>
+<p class="typeTitle">Supply Chain Financing</p>
+<p class="typeDesc">
+         Short-term financing to facilitate early invoice payments that supports working capital needs and cash flow.
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+<!-- Letter Of Credit (NEW) -->
+<a class="typeCard" data-type="loc" data-mode="modal" href="#"
+        data-title="Letter of Credit"
+        data-body="Securing the necessary liquidity by providing a guarantee to issue the Letter of Credit in cooperation with commercial banks.">
+<div class="statusDot">✓</div>
+<div class="typeIcon">📜</div>
+<p class="typeTitle">Letter of Credit</p>
+<p class="typeDesc">
+         Secures necessary liquidity by providing a guarantee to issue an LC with commercial banks.
+</p>
+<div class="greenBtn">Appraisal & Examples</div>
+</a>
+</div>
+<div class="hintRow">
+<p id="progressText" class="muted lockNote">0 / 6 types clicked</p>
+<p id="lockNote" class="muted lockNote">🔒 Please click all types to unlock Continue.</p>
+</div>
+<div class="actions">
+<a class="btn ghost" href="lifecycle.html">Back</a>
+<a id="continueBtn" class="btn primary" href="#"
+        style="pointer-events:none; opacity:.55;">
+       Continue →
+</a>
+</div>
+</section>
+<footer class="footer">
+<span>© <span id="y"></span> SIDF RM Credit Onboarding (internal)</span>
+<span>Built for RM Department · Credit</span>
+</footer>
+</main>
+<!-- Modal -->
+<div id="modalBack" class="modalBack" role="dialog" aria-modal="true" aria-label="Financing details">
+<div class="modal">
+<div class="modalHead">
+<h3 id="modalTitle" class="modalTitle">Title</h3>
+<button id="modalClose" class="modalClose">Close</button>
+</div>
+<div id="modalBody" class="modalBody"></div>
+</div>
+</div>
+<script>
+ document.getElementById("y").textContent = new Date().getFullYear();
+ /* ========= CONFIG: update filenames to match your site ========= */
+ const WC_APPRAISAL_PAGE = "wc_appraisal.html";  // change if needed
+ const PF_APPRAISAL_PAGE = "pf_appraisal.html";  // change if needed
+ /* ============================================================= */
+ const user = localStorage.getItem("sidf_user_current") || "guest";
+ const TYPES = ["wc","pf","mp","acq","scf","loc"];
+ const KEY = (t) => `sidf_fin_type_clicked:${t}:${user}`;
+ const KEY_DONE_FINANCING = `sidf_done_financing:${user}`;
+ const cards = document.querySelectorAll(".typeCard");
+ const progressText = document.getElementById("progressText");
+ const lockNote = document.getElementById("lockNote");
+ const continueBtn = document.getElementById("continueBtn");
+ // Modal
+ const modalBack = document.getElementById("modalBack");
+ const modalTitle = document.getElementById("modalTitle");
+ const modalBody = document.getElementById("modalBody");
+ const modalClose = document.getElementById("modalClose");
+ function clickedCount(){
+   return TYPES.reduce((acc, t) => acc + (localStorage.getItem(KEY(t)) === "true" ? 1 : 0), 0);
+ }
+ function setCardState(){
+   cards.forEach(c => {
+     const t = c.dataset.type;
+     if(localStorage.getItem(KEY(t)) === "true"){
+       c.classList.add("visited");
+     } else {
+       c.classList.remove("visited");
+     }
+   });
+ }
+ function refreshGate(){
+   const doneCount = clickedCount();
+   progressText.textContent = `${doneCount} / ${TYPES.length} types clicked`;
+   if(doneCount === TYPES.length){
+     localStorage.setItem(KEY_DONE_FINANCING, "true");
+     lockNote.textContent = "Completed ✓ You can continue.";
+     continueBtn.style.pointerEvents = "auto";
+     continueBtn.style.opacity = "1";
+     continueBtn.href = "modeling.html";
+   } else {
+     lockNote.textContent = "🔒 Please click all types to unlock Continue.";
+     continueBtn.style.pointerEvents = "none";
+     continueBtn.style.opacity = ".55";
+     continueBtn.href = "#";
+   }
+ }
+ function openModal(title, body){
+   modalTitle.textContent = title || "Details";
+   modalBody.textContent = body || "";
+   modalBack.style.display = "flex";
+ }
+ function closeModal(){
+   modalBack.style.display = "none";
+ }
+ modalClose.addEventListener("click", closeModal);
+ modalBack.addEventListener("click", (e) => {
+   if(e.target === modalBack) closeModal();
+ });
+ cards.forEach(card => {
+   const type = card.dataset.type;
+   const mode = card.dataset.mode;
+   // Apply config overrides to link destinations
+   if(type === "wc") card.dataset.link = WC_APPRAISAL_PAGE;
+   if(type === "pf") card.dataset.link = PF_APPRAISAL_PAGE;
+   card.addEventListener("click", (e) => {
+     e.preventDefault();
+     // Mark clicked immediately
+     localStorage.setItem(KEY(type), "true");
+     setCardState();
+     refreshGate();
+     if(mode === "link"){
+       const dest = card.dataset.link;
+       if(dest && dest !== "#"){
+         window.location.href = dest;
+       }
+       return;
+     }
+     openModal(card.dataset.title, card.dataset.body);
+   });
+ });
+ // Initial paint
+ setCardState();
+ refreshGate();
+ // If already completed, keep unlocked for returning users
+ if(localStorage.getItem(KEY_DONE_FINANCING) === "true"){
+   TYPES.forEach(t => localStorage.setItem(KEY(t), "true"));
+   setCardState();
+   refreshGate();
+ }
+</script>
+</body>
+</html>
