@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Financial Modeling | Onboarding Portal</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+ .grid{
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 12px;
+   margin-top: 12px;
+ }
+ @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
+ /* ✅ bolder, greener outline */
+ .box{
+   border: 2.5px solid rgba(11,107,79,.55);
+   border-radius: 16px;
+   background: #fff;
+   padding: 16px;
+   position: relative;
+   overflow: hidden;
+   box-shadow: 0 0 0 2px rgba(11,107,79,.10) inset;
+ }
+ .titleRow{
+   display:flex;
+   align-items:center;
+   gap: 10px;
+   margin-bottom: 8px;
+ }
+ /* Number badge only (no icons) */
+ .badge{
+   width: 30px;
+   height: 30px;
+   border-radius: 999px;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   background: linear-gradient(135deg, var(--sidf-teal), var(--sidf-green));
+   color:#fff;
+   font-weight: 950;
+   font-size: 13px;
+   flex: 0 0 auto;
+ }
+ .muted2{ margin: 6px 0 0; color: var(--muted); line-height: 1.55; }
+ .sub{
+   margin-top: 10px;
+   padding: 10px 12px;
+   border-radius: 14px;
+   border: 1px solid rgba(11,107,79,.22);
+   background: rgba(230,244,239,.35);
+   color: #0b3e30;
+   font-weight: 850;
+ }
+ .btn-row{
+   margin-top: 12px;
+   display:flex;
+   flex-direction: column; /* ✅ status goes UNDER button */
+   gap: 6px;
+   align-items:flex-start;
+ }
+ .inline-actions{
+   display:flex;
+   gap: 10px;
+   flex-wrap: wrap;
+   margin-top: 10px;
+   align-items:flex-start;
+ }
+ /* Status text shown under button */
+ .statusText{
+   font-weight: 400;
+   color: var(--muted);
+ }
+ /* Green check mark (shown when completed) */
+ .done-check{
+   position: absolute;
+   top: 12px;
+   right: 12px;
+   width: 34px;
+   height: 34px;
+   border-radius: 999px;
+   display: none;
+   align-items:center;
+   justify-content:center;
+   background: rgba(230,244,239,.95);
+   border: 2px solid rgba(11,107,79,.28);
+ }
+ .done-check svg{
+   width: 18px;
+   height: 18px;
+   stroke: var(--sidf-green);
+ }
+ /* Continue lock styling */
+ .btn.locked{
+   pointer-events: none;
+   opacity: .55;
+ }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="shell">
+<header class="topbar">
+<div class="brand">
+<img src="sidf-logo.png" class="sidf-logo" alt="SIDF Logo">
+<div class="brand-text">
+<div class="brand-title">SIDF</div>
+<div class="brand-sub">Relationship Management · Credit</div>
+</div>
+</div>
+<div class="chip">Financial Modeling</div>
+</header>
+<section class="card">
+<h1>Financial Modeling</h1>
+<div class="grid">
+<!-- Working Capital Model -->
+<div class="box" id="boxWC">
+<div class="done-check" id="checkWC" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M20 6L9 17l-5-5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div class="titleRow">
+<div class="badge">1</div>
+<h2 style="margin:0;">Working Capital Model</h2>
+</div>
+<p class="muted2">
+       Does not require (FTR) Full Technical Report and (FMR) Full Market Report.
+</p>
+<div class="btn-row">
+<a class="btn primary" href="wc-model-req.html" id="wcReqBtn">Requirements</a>
+<div class="statusText" id="wcStatus">Review Requirements</div>
+</div>
+</div>
+<!-- Project Finance Models -->
+<div class="box" id="boxPF">
+<div class="done-check" id="checkPF" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M20 6L9 17l-5-5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div class="titleRow">
+<div class="badge">2</div>
+<h2 style="margin:0;">Project Finance and Others Model</h2>
+</div>
+<div class="sub">Divides into: Consolidated model + Standalone model</div>
+<div class="inline-actions">
+<a class="btn primary" href="pf-model-req.html" id="pfReqBtn">Requirements</a>
+<a class="btn primary" href="models.html" id="pfCompareBtn">Standalone vs Consolidated</a>
+</div>
+<!-- ✅ under Requirements (first button) as requested -->
+<div class="statusText" id="pfStatus" style="margin-top:6px;">Review Requirements</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="actions spread">
+<a class="btn ghost" href="financing.html">Back</a>
+<a class="btn primary locked" id="continueBtn" href="final.html">Continue</a>
+</div>
+</section>
+<footer class="footer">
+<span>Internal use only</span>
+<span>Financial Modeling</span>
+</footer>
+</main>
+<script>
+ // Completion keys for this page
+ const KEY_WC = "sidf_done_modeling_wc";
+ const KEY_PF_REQ = "sidf_done_modeling_pf_req";
+ const KEY_PF_COMPARE = "sidf_done_modeling_pf_compare";
+ // Elements
+ const wcStatus = document.getElementById("wcStatus");
+ const pfStatus = document.getElementById("pfStatus");
+ const checkWC = document.getElementById("checkWC");
+ const checkPF = document.getElementById("checkPF");
+ const continueBtn = document.getElementById("continueBtn");
+ // Mark reviewed when user clicks links
+ document.getElementById("wcReqBtn").addEventListener("click", () => {
+   localStorage.setItem(KEY_WC, "true");
+ });
+ document.getElementById("pfReqBtn").addEventListener("click", () => {
+   localStorage.setItem(KEY_PF_REQ, "true");
+ });
+ document.getElementById("pfCompareBtn").addEventListener("click", () => {
+   localStorage.setItem(KEY_PF_COMPARE, "true");
+ });
+ function isTrue(k){ return localStorage.getItem(k) === "true"; }
+ function refreshUI(){
+   const wcDone = isTrue(KEY_WC);
+   const pfDone = isTrue(KEY_PF_REQ) && isTrue(KEY_PF_COMPARE);
+   // WC
+   if(wcDone){
+     checkWC.style.display = "flex";
+     wcStatus.textContent = "Reviewed ✓";
+     wcStatus.style.color = "var(--sidf-green)";
+   }else{
+     checkWC.style.display = "none";
+     wcStatus.textContent = "Review Requirements";
+     wcStatus.style.color = "var(--muted)";
+   }
+   // PF
+   if(pfDone){
+     checkPF.style.display = "flex";
+     pfStatus.textContent = "Reviewed ✓";
+     pfStatus.style.color = "var(--sidf-green)";
+   }else{
+     checkPF.style.display = "none";
+     pfStatus.textContent = "Review Requirements";
+     pfStatus.style.color = "var(--muted)";
+   }
+   // Unlock continue only when both parts are done
+   if(wcDone && pfDone){
+     continueBtn.classList.remove("locked");
+     localStorage.setItem("sidf_done_modeling", "true");
+   }else{
+     continueBtn.classList.add("locked");
+   }
+ }
+ window.addEventListener("load", refreshUI);
+ document.addEventListener("visibilitychange", () => {
+   if(!document.hidden) refreshUI();
+ });
+</script>
+</body>
+</html>
